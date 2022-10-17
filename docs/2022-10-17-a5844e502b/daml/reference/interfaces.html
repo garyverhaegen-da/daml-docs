@@ -1,0 +1,1185 @@
+<!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reference: Interfaces &mdash; Daml SDK 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/clipboard.min.js"></script>
+  <script src="../../_static/copybutton.js"></script>
+  
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="The standard library" href="../stdlib/index.html" />
+  <link rel="prev" title="Reference: Exceptions" href="exceptions.html" /> 
+
+  
+  <link rel="icon" type="image/svg+xml"  href="../../_static/images/daml-logo-mark-light.svg">
+  <link rel="alternate icon" href="../../_static/images/daml-favicon-1.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSWJMNX');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <!-- Mopinion Pastea.se  start --><script type="text/javascript">(function(){var id="4s6vwov7ad6qyxhq8iwbyhocrsn2nm36k25";var js=document.createElement("script");js.setAttribute("type","text/javascript");js.setAttribute("src","//deploy.mopinion.com/js/pastease.js");js.async=true;document.getElementsByTagName("head")[0].appendChild(js);var t=setInterval(function(){try{new Pastease.load(id);clearInterval(t)}catch(e){}},50)})();</script><!-- Mopinion Pastea.se end -->
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSWJMNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-nav-side-shadow"></div>
+      <div class="wy-side-scroll">
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+          
+          
+          
+          
+          
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Daml Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/app-arch.html"> app-dev/app-arch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/index.html"> app-dev/bindings-ts/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html"> app-dev/bindings-ts/daml-react</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html"> app-dev/bindings-ts/daml-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html"> app-dev/bindings-ts/daml-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html"> app-dev/bindings-ts/daml2js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/parties-users.html"> app-dev/parties-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/index.html"> app-dev/grpc/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/error-codes.html"> app-dev/grpc/error-codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html"> app-dev/grpc/daml-to-ledger-api</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/services.html"> app-dev/services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html"> app-dev/bindings-x-lang/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/daml-lf-translation.html"> app-dev/daml-lf-translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/command-deduplication.html"> app-dev/command-deduplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/ledger-api.html"> app-dev/ledger-api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/authorization.html"> app-dev/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/index.html"> app-dev/bindings-java/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html"> app-dev/bindings-java/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html"> app-dev/bindings-java/quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/example.html"> app-dev/bindings-java/example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/index.html"> json-api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/lf-value-specification.html">Daml-LF JSON Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/search-query-language.html">Query Language</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/production-setup.html">Production Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/lf-value-specification.html"> json-api/lf-value-specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/search-query-language.html"> json-api/search-query-language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup.html"> json-api/production-setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/index.html"> upgrade/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/extend.html"> upgrade/extend</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/upgrade.html"> upgrade/upgrade</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/automation.html"> upgrade/automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/index.html"> tools/auth-middleware/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html"> tools/auth-middleware/oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/index.html"> tools/trigger-service/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html"> tools/trigger-service/auth0_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/authorization.html"> tools/trigger-service/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/assistant.html"> tools/assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/codegen.html"> tools/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/non-repudiation.html"> tools/non-repudiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/visual.html"> tools/visual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/navigator/index.html"> tools/navigator/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/sandbox.html"> tools/sandbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/profiler.html"> tools/profiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/export/index.html"> tools/export/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/index.html"> triggers/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/generic_ledger.html"> deploy/generic_ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../operating-daml.html"> operating-daml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ops/pruning.html">Participant Pruning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ops/metering.html">Participant Metering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ops/requirements.html">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ops/system_architecture_faq.html">System Architecture FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../writing-daml.html"> writing-daml</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../intro/0_Intro.html">An Introduction to Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../intro/1_Token.html">Basic Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/2_DamlScript.html">Test Templates using Daml Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/3_Data.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/4_Transformations.html">Transform Data Using Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/5_Restrictions.html">Add Constraints to a Contract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/6_Parties.html">Parties and Authority</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/7_Composing.html">Composing Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/8_Exceptions.html">Exception Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/9_Dependencies.html">Work with Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/10_Functional101.html">Functional Programming 101</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/11_StdLib.html">Introduction to the Daml Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/12_Testing.html">Test Daml Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../intro/99_NextSteps.html">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Language Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="choices.html">Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="updates.html">Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data-types.html">Data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="working-with.html">Built-in functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expressions.html">Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="file-structure.html">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contract-keys.html">Contract keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/index.html">The standard library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/Prelude.html">Prelude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Action.html">DA.Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Action-State.html">DA.Action.State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Action-State-Class.html">DA.Action.State.Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Assert.html">DA.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Bifunctor.html">DA.Bifunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-BigNumeric.html">DA.BigNumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Date.html">DA.Date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Either.html">DA.Either</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Exception.html">DA.Exception</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Foldable.html">DA.Foldable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Functor.html">DA.Functor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-List.html">DA.List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-List-BuiltinOrder.html">DA.List.BuiltinOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-List-Total.html">DA.List.Total</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Logic.html">DA.Logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Map.html">DA.Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Math.html">DA.Math</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Monoid.html">DA.Monoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-NonEmpty.html">DA.NonEmpty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-NonEmpty-Types.html">DA.NonEmpty.Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Numeric.html">DA.Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Optional.html">DA.Optional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Record.html">DA.Record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Semigroup.html">DA.Semigroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Set.html">DA.Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Stack.html">DA.Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Text.html">DA.Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-TextMap.html">DA.TextMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Time.html">DA.Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Traversable.html">DA.Traversable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Tuple.html">DA.Tuple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../stdlib/DA-Validation.html">DA.Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns.html">Good Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools.html"> tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/assistant.html">Daml Assistant (<code class="docutils literal notranslate"><span class="pre">daml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../daml-studio.html">Daml Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/sandbox.html">Daml Sandbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/navigator/index.html">Navigator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/codegen.html">Daml Codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/profiler.html">Daml Profiler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-repl/index.html"> daml-repl/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../daml-studio.html"> daml/daml-studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking.html"> daml/patterns/locking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/initaccept.html"> daml/patterns/initaccept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/multiparty-agreement.html"> daml/patterns/multiparty-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html"> daml/patterns/locking/locking-by-safekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-state.html"> daml/patterns/locking/locking-by-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html"> daml/patterns/locking/locking-by-archiving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/legends.html"> daml/patterns/legends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/delegation.html"> daml/patterns/delegation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/authorization.html"> daml/patterns/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/3_Data.html"> daml/intro/3_Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/8_Exceptions.html"> daml/intro/8_Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/12_Testing.html"> daml/intro/12_Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/5_Restrictions.html"> daml/intro/5_Restrictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/6_Parties.html"> daml/intro/6_Parties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/99_NextSteps.html"> daml/intro/99_NextSteps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/2_DamlScript.html"> daml/intro/2_DamlScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/10_Functional101.html"> daml/intro/10_Functional101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/1_Token.html"> daml/intro/1_Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/0_Intro.html"> daml/intro/0_Intro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/1_Token.html">Basic Contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/2_DamlScript.html">Test Templates using Daml Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/3_Data.html">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/4_Transformations.html">Transform Data Using Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/5_Restrictions.html">Add Constraints to a Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/6_Parties.html">Parties and Authority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/7_Composing.html">Composing Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/8_Exceptions.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/9_Dependencies.html">Work with Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/10_Functional101.html">Functional Programming 101</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/11_StdLib.html">Introduction to the Daml Standard Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/12_Testing.html">Test Daml Contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/99_NextSteps.html">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/4_Transformations.html"> daml/intro/4_Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/7_Composing.html"> daml/intro/7_Composing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/9_Dependencies.html"> daml/intro/9_Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/11_StdLib.html"> daml/intro/11_StdLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns.html"> daml/patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html"> daml/troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templates.html"> daml/reference/templates</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"> daml/reference/index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="choices.html">Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="updates.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-types.html">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="working-with.html">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="expressions.html">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file-structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contract-keys.html">Contract keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="working-with.html"> daml/reference/working-with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html"> daml/reference/functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-types.html"> daml/reference/data-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="choices.html"> daml/reference/choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html"> daml/reference/packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html"> daml/reference/expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html"> daml/reference/structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contract-keys.html"> daml/reference/contract-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file-structure.html"> daml/reference/file-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="updates.html"> daml/reference/updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html"> daml/reference/exceptions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> daml/reference/interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html"> getting-started/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing.html"> getting-started/testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/path-variables.html"> getting-started/path-variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/manual-download.html"> getting-started/manual-download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/app-architecture.html"> getting-started/app-architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-feature.html"> getting-started/first-feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation.html"> getting-started/installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/support.html"> support/support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/status-definitions.html"> support/status-definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/overview.html"> support/overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../support/status-definitions.html">Status Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../support/component-statuses.html">Feature and Component Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/releases.html"> support/releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/compatibility.html"> support/compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/component-statuses.html"> support/component-statuses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/time.html"> concepts/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/index.html"> concepts/ledger-model/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html">Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html">Privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html">Daml: Define Contract Models Compactly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html"> concepts/ledger-model/ledger-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html"> concepts/ledger-model/ledger-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html"> concepts/ledger-model/ledger-integrity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html"> concepts/ledger-model/ledger-daml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html"> concepts/ledger-model/ledger-exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/interoperability.html"> concepts/interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/test-evidence.html"> concepts/test-evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/identity-and-package-management.html"> concepts/identity-and-package-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/glossary.html"> concepts/glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/local-ledger.html"> concepts/local-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/system_architecture_faq.html"> ops/system_architecture_faq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/requirements.html"> ops/requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/pruning.html"> ops/pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/metering.html"> ops/metering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/connect/helm.html"> ops/connect/helm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/connect/auth0.html"> ops/connect/auth0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/index.html"> daml-script/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../building-applications.html"> building-applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/app-arch.html">Daml Application Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/index.html">Using JavaScript Client Libraries with Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/index.html">HTTP JSON API Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../json-api/lf-value-specification.html">Daml-LF JSON Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../json-api/search-query-language.html">Query Language</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../json-api/production-setup.html">Production Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/index.html">Java Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/index.html">Daml Script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-repl/index.html">Daml REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/index.html">Upgrading and Extending Daml Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/ledger-api.html">The Ledger API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/command-deduplication.html">Command Deduplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/index.html">Daml Triggers - Off-Ledger Automation in Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/index.html">Trigger Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/index.html">Auth Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html">Dummy Canton Refs</a></li>
+</ul>
+
+          
+          
+          
+          <div class="pdf-download"><a href="../../_downloads/DigitalAssetSDK.pdf" download>Download as PDF</a></div>
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="topbar fixed">
+        
+        <nav class="wy-nav-top" aria-label="top navigation">
+          
+          <i data-toggle="wy-nav-top" class="wy-nav-top-toggle"></i>
+          
+        </nav>
+        <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="navbar">
+    <h1><img src="../../_static/images/Daml_Logo_Blue.svg"></h1>
+    <div class="navbar-menu">
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/developers" role="menuitem" class="da-menu-link">Developers</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/products" role="menuitem" class="da-menu-link">Products</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com" role="menuitem" class="da-menu-link">Company</a>
+        </div>
+    </div>
+</div>
+
+        <div class="version ">
+          <span class="hide-mobile">Version&nbsp;</span><span class="version_switcher_placeholder"></span>
+          
+        </div>
+
+
+        <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<div class="search-inline">
+    <div id="rtd-search-inline-form" class="wy-form">
+        <input type="text" class="search-inline-input" placeholder="Search" name="q">
+        <img src="../../_static/images/Search.svg" class="search-inline-img"/>
+    </div>
+    <div class="search-alert">
+        Please enter at least 3 letters.
+    </div>
+    <div id="search-inline-results" class="search-inline-results">
+        
+    </div>
+</div>
+          <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="content-menu collapsed">
+    <span class="content-menu-title">In This Section</span>
+    <span class="content-menu-expand"></span>
+    <div class="content-menu-wrapper">
+        
+        <!-- Local TOC -->
+        <div class="content-menu-toc"><ul>
+<li><a class="reference internal" href="#">Reference: Interfaces</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#interface-declaration">Interface Declaration</a><ul>
+<li><a class="reference internal" href="#interface-name">Interface Name</a></li>
+<li><a class="reference internal" href="#implicit-abstract-type">Implicit abstract type</a></li>
+<li><a class="reference internal" href="#interface-methods">Interface Methods</a></li>
+<li><a class="reference internal" href="#interface-view-type">Interface View Type</a></li>
+<li><a class="reference internal" href="#interface-choices">Interface Choices</a></li>
+<li><a class="reference internal" href="#empty-interfaces">Empty Interfaces</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interface-instances">Interface Instances</a><ul>
+<li><a class="reference internal" href="#interface-instance-clause"><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause</a></li>
+<li><a class="reference internal" href="#interface-instance-clause-in-the-interface"><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause in the interface</a></li>
+<li><a class="reference internal" href="#empty-interface-instance-clause">Empty <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#interface-functions">Interface Functions</a><ul>
+<li><a class="reference internal" href="#interfacetyperep"><code class="docutils literal notranslate"><span class="pre">interfaceTypeRep</span></code></a></li>
+<li><a class="reference internal" href="#tointerface"><code class="docutils literal notranslate"><span class="pre">toInterface</span></code></a></li>
+<li><a class="reference internal" href="#frominterface"><code class="docutils literal notranslate"><span class="pre">fromInterface</span></code></a></li>
+<li><a class="reference internal" href="#tointerfacecontractid"><code class="docutils literal notranslate"><span class="pre">toInterfaceContractId</span></code></a></li>
+<li><a class="reference internal" href="#frominterfacecontractid"><code class="docutils literal notranslate"><span class="pre">fromInterfaceContractId</span></code></a></li>
+<li><a class="reference internal" href="#fetchfrominterface"><code class="docutils literal notranslate"><span class="pre">fetchFromInterface</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#required-interfaces">Required Interfaces</a><ul>
+<li><a class="reference internal" href="#id3">Interface Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        
+    </div>
+</div>
+        
+
+      </div>
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+                
+  <div class="section" id="reference-interfaces">
+<span id="daml-ref-interfaces"></span><h1>Reference: Interfaces<a class="headerlink" href="#reference-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>In Daml, an interface defines an abstract type together with a behavior
+specified by its view type, method signatures, and choices. For a template to
+conform to this interface, there must be a corresponding <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code>
+definition where all the methods of the interface (including the special <code class="docutils literal notranslate"><span class="pre">view</span></code>
+method) are implemented. This allows decoupling such behavior from its
+implementation, so other developers can write applications in terms of the
+interface instead of the concrete template.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>In order to test this experimental feature, your Daml project needs to target
+Daml-LF version <code class="docutils literal notranslate"><span class="pre">1.15</span></code> or higher, which is specificed by adding the following
+line to the project’s <code class="docutils literal notranslate"><span class="pre">daml.yaml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">build-options</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--target=1.15</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>If using Canton, it needs to run in dev mode, see
+<a class="reference internal" href="../../canton-refs.html#how-do-i-enable-unsupported-features"><span class="std std-ref">Canton: How do I enable unsupported features</span></a> for instructions.</p>
+</div>
+<div class="section" id="interface-declaration">
+<h2>Interface Declaration<a class="headerlink" href="#interface-declaration" title="Permalink to this headline">¶</a></h2>
+<p>An interface declaration is somewhat similar to a template declaration.</p>
+<div class="section" id="interface-name">
+<h3>Interface Name<a class="headerlink" href="#interface-name" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="kt">MyInterface</span> <span class="kr">where</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>This is the name of the interface.</li>
+<li>It’s preceded by the keyword <code class="docutils literal notranslate"><span class="pre">interface</span></code> and followed by the keyword <code class="docutils literal notranslate"><span class="pre">where</span></code>.</li>
+<li>It must begin with a capital letter, like any other type name.</li>
+</ul>
+</div>
+<div class="section" id="implicit-abstract-type">
+<h3>Implicit abstract type<a class="headerlink" href="#implicit-abstract-type" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Whenever an interface is defined, an abstract type is defined with the same
+name. “Abstract” here means:<ul>
+<li>Values of this type cannot be created using a data constructor. Instead,
+they are constructed by applying the function <code class="docutils literal notranslate"><span class="pre">toInterface</span></code> to a template
+value.</li>
+<li>Values of this type cannot be inspected directly via case analysis.
+Instead, use functions such as <code class="docutils literal notranslate"><span class="pre">fromInterface</span></code>.</li>
+<li>See <a class="reference internal" href="#daml-ref-interface-functions"><span class="std std-ref">Interface Functions</span></a> for more information on these and
+other functions for interacting with interface values.</li>
+</ul>
+</li>
+<li>An interface value carries inside it the type and parameters of the template
+value from which it was constructed.</li>
+<li>As for templates, the existence of a local binding <code class="docutils literal notranslate"><span class="pre">b</span></code> of type <code class="docutils literal notranslate"><span class="pre">I</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">I</span></code> is an interface does not necessarily imply the existence on the ledger
+of a contract with the template type and parameters used to construct <code class="docutils literal notranslate"><span class="pre">b</span></code>.
+This can only be assumed if <code class="docutils literal notranslate"><span class="pre">b</span></code> the result of a fetch from the ledger within
+the same transaction.</li>
+</ul>
+</div>
+<div class="section" id="interface-methods">
+<h3>Interface Methods<a class="headerlink" href="#interface-methods" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span>  <span class="n">method1</span> <span class="kt">:</span> <span class="kt">Party</span>
+  <span class="n">method2</span> <span class="kt">:</span> <span class="kt">Int</span>
+  <span class="n">method3</span> <span class="kt">:</span> <span class="kt">Bool</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">An interface may define any number of methods.</p>
+</li>
+<li><p class="first">A method definition consists of the method name and the method type, separated
+by a single colon <code class="docutils literal notranslate"><span class="pre">:</span></code>. The name of the method must be a valid identifier
+beginning with a lowercase letter or an underscore.</p>
+</li>
+<li><p class="first">A method definition introduces a top level function of the same name:</p>
+<ul>
+<li><p class="first">If the interface is called <code class="docutils literal notranslate"><span class="pre">I</span></code>, the method is called <code class="docutils literal notranslate"><span class="pre">m</span></code>, and the
+method type is <code class="docutils literal notranslate"><span class="pre">M</span></code> (which might be a function type), this introduces
+the function <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">:</span> <span class="pre">I</span> <span class="pre">-&gt;</span> <span class="pre">M</span></code>:</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="nf">func1</span> <span class="kt">:</span> <span class="kt">MyInterface</span> <span class="ow">-&gt;</span> <span class="kt">Party</span>
+<span class="nf">func1</span> <span class="ow">=</span> <span class="n">method1</span>
+
+<span class="nf">func2</span> <span class="kt">:</span> <span class="kt">MyInterface</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+<span class="nf">func2</span> <span class="ow">=</span> <span class="n">method2</span>
+
+<span class="nf">func3</span> <span class="kt">:</span> <span class="kt">MyInterface</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+<span class="nf">func3</span> <span class="ow">=</span> <span class="n">method3</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">The first argument’s type <code class="docutils literal notranslate"><span class="pre">I</span></code> means that the function can only be applied
+to values of the interface type <code class="docutils literal notranslate"><span class="pre">I</span></code> itself. Methods cannot
+be applied to template values, even if there exists an
+<code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> of <code class="docutils literal notranslate"><span class="pre">I</span></code> for that template. To use an interface
+method on a template value, first convert it using the <code class="docutils literal notranslate"><span class="pre">toInterface</span></code>
+function.</p>
+</li>
+<li><p class="first">Applying the function to such argument results in a value of type <code class="docutils literal notranslate"><span class="pre">M</span></code>,
+corresponding to the implementation of <code class="docutils literal notranslate"><span class="pre">m</span></code> in the interface instance of
+<code class="docutils literal notranslate"><span class="pre">I</span></code> for the underlying template type <code class="docutils literal notranslate"><span class="pre">t</span></code> (the type of the template value
+from which the interface value was constructed).</p>
+</li>
+</ul>
+</li>
+<li><p class="first">One special method, <code class="docutils literal notranslate"><span class="pre">view</span></code>, must be defined for the viewtype.
+(see <a class="reference internal" href="#interface-viewtype"><span class="std std-ref">Interface View Type</span></a> below).</p>
+</li>
+</ul>
+</div>
+<div class="section" id="interface-view-type">
+<span id="interface-viewtype"></span><h3>Interface View Type<a class="headerlink" href="#interface-view-type" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">data</span> <span class="kt">MyInterfaceViewType</span> <span class="ow">=</span>
+  <span class="kt">MyInterfaceViewType</span> <span class="p">{</span> <span class="n">name</span> <span class="kt">:</span> <span class="kt">Text</span><span class="p">,</span> <span class="n">value</span> <span class="kt">:</span> <span class="kt">Int</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span>  <span class="kr">viewtype</span> <span class="kt">MyInterfaceViewType</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>All interface instances must implement a special <code class="docutils literal notranslate"><span class="pre">view</span></code> method which returns
+a value of the type declared by <code class="docutils literal notranslate"><span class="pre">viewtype</span></code>.</li>
+<li>The type must be a record.</li>
+<li>This type is returned by subscriptions on interfaces.</li>
+</ul>
+</div>
+<div class="section" id="interface-choices">
+<span id="id1"></span><h3>Interface Choices<a class="headerlink" href="#interface-choices" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span>  <span class="kr">choice</span> <span class="kt">MyChoice</span> <span class="kt">:</span> <span class="p">(</span><span class="kt">ContractId</span> <span class="kt">MyInterface</span><span class="p">,</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="kr">with</span>
+      <span class="n">argument1</span> <span class="kt">:</span> <span class="kt">Bool</span>
+      <span class="n">argument2</span> <span class="kt">:</span> <span class="kt">Int</span>
+    <span class="kr">controller</span> <span class="n">method1</span> <span class="kr">this</span>
+    <span class="kr">do</span>
+      <span class="kr">let</span> <span class="n">n0</span> <span class="ow">=</span> <span class="n">method2</span> <span class="kr">this</span>
+      <span class="kr">let</span> <span class="n">n1</span> <span class="ow">=</span> <span class="n">method3</span> <span class="kr">this</span> <span class="n">argument1</span> <span class="n">argument2</span> <span class="n">n0</span>
+      <span class="n">pure</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">n1</span><span class="p">)</span>
+
+  <span class="kr">nonconsuming</span> <span class="kr">choice</span> <span class="kt">MyNonConsumingChoice</span> <span class="kt">:</span> <span class="kt">Int</span>
+    <span class="kr">controller</span> <span class="n">method1</span> <span class="kr">this</span>
+    <span class="kr">do</span>
+      <span class="n">pure</span> <span class="o">$</span> <span class="n">method2</span> <span class="kr">this</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Interface choices work in a very similar way to template choices. Any contract
+of a template type for which an interface instance exists will grant the
+choice to the controlling party.</li>
+<li>Interface choices can only be exercised on values of the corresponding
+interface type. To exercise an interface choice on a template value, first
+convert it using the <code class="docutils literal notranslate"><span class="pre">toInterface</span></code> function.</li>
+<li>Interface methods can be used to define the controller of a choice
+(e.g. <code class="docutils literal notranslate"><span class="pre">method1</span></code>) as well as the actions that run when the choice is
+<em>exercised</em> (e.g. <code class="docutils literal notranslate"><span class="pre">method2</span></code> and <code class="docutils literal notranslate"><span class="pre">method3</span></code>).</li>
+<li>As for template choices, the <code class="docutils literal notranslate"><span class="pre">choice</span></code> keyword can be optionally prefixed
+with the <code class="docutils literal notranslate"><span class="pre">nonconsuming</span></code> keyword to specify that the contract will not be
+consumed when the choice is exercised. If not specified, the choice will be
+<code class="docutils literal notranslate"><span class="pre">consuming</span></code>. Note that the <code class="docutils literal notranslate"><span class="pre">preconsuming</span></code> and <code class="docutils literal notranslate"><span class="pre">postconsuming</span></code> qualifiers
+are not supported on interface choices.</li>
+<li>See <a class="reference internal" href="choices.html"><span class="doc">Reference: Choices</span></a> for full reference information, but note that
+controller-first syntax is not supported for interface choices.</li>
+</ul>
+</div>
+<div class="section" id="empty-interfaces">
+<h3>Empty Interfaces<a class="headerlink" href="#empty-interfaces" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">data</span> <span class="kt">EmptyInterfaceView</span> <span class="ow">=</span> <span class="kt">EmptyInterfaceView</span> <span class="p">{}</span>
+
+<span class="kr">interface</span> <span class="kt">YourInterface</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>It is possible (though not necessarily useful) to define an interface without
+methods, precondition or choices. However, a view type must always be defined,
+though it can be set to unit.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="interface-instances">
+<span id="id2"></span><h2>Interface Instances<a class="headerlink" href="#interface-instances" title="Permalink to this headline">¶</a></h2>
+<p>For context, a simple template definition:</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">template</span> <span class="kt">NameOfTemplate</span>
+  <span class="kr">with</span>
+    <span class="n">field1</span> <span class="kt">:</span> <span class="kt">Party</span>
+    <span class="n">field2</span> <span class="kt">:</span> <span class="kt">Int</span>
+  <span class="kr">where</span>
+    <span class="kr">signatory</span> <span class="n">field1</span>
+</pre></div>
+</div>
+<div class="section" id="interface-instance-clause">
+<h3><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause<a class="headerlink" href="#interface-instance-clause" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span>    <span class="kr">interface</span> <span class="kr">instance</span> <span class="kt">MyInterface</span> <span class="kr">for</span> <span class="kt">NameOfTemplate</span> <span class="kr">where</span>
+      <span class="n">view</span> <span class="ow">=</span> <span class="kt">MyInterfaceViewType</span> <span class="s">&quot;NameOfTemplate&quot;</span> <span class="mi">100</span>
+      <span class="n">method1</span> <span class="ow">=</span> <span class="n">field1</span>
+      <span class="n">method2</span> <span class="ow">=</span> <span class="n">field2</span>
+      <span class="n">method3</span> <span class="kc">False</span> <span class="kr">_</span> <span class="kr">_</span> <span class="ow">=</span> <span class="mi">0</span>
+      <span class="n">method3</span> <span class="kc">True</span> <span class="n">x</span> <span class="n">y</span>
+        <span class="o">|</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+        <span class="o">|</span> <span class="n">otherwise</span> <span class="ow">=</span> <span class="n">y</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>To make a template an instance of an existing interface, an
+<code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause must be defined in the template declaration.</li>
+<li>The template of the clause must match the enclosing declaration. In other
+words, a template <code class="docutils literal notranslate"><span class="pre">T</span></code> declaration can only contain <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code>
+clauses where the template is <code class="docutils literal notranslate"><span class="pre">T</span></code>.</li>
+<li>The clause must start with the keywords <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code>, followed by
+the name of the interface, then the keyword <code class="docutils literal notranslate"><span class="pre">for</span></code> and the name of the
+template, and finally the keyword <code class="docutils literal notranslate"><span class="pre">where</span></code>, which introduces a block where
+<strong>all</strong> the methods of the interface must be implemented.</li>
+<li>Within the clause, there’s an implicit local binding <code class="docutils literal notranslate"><span class="pre">this</span></code> referring to the
+contract on which the method is applied, which has the type of the template’s
+data record. The template parameters of this contract are also in scope.</li>
+<li>Method implementations can be defined using the same syntax as for top level
+functions, including pattern matches and guards (e.g. <code class="docutils literal notranslate"><span class="pre">method3</span></code>).</li>
+<li>Each method implementation must return the same type as specified for that
+method in the interface declaration.</li>
+<li>The implementation of the special <code class="docutils literal notranslate"><span class="pre">view</span></code> method must return the type
+specified as the <code class="docutils literal notranslate"><span class="pre">viewtype</span></code> in the interface declaration.</li>
+</ul>
+</div>
+<div class="section" id="interface-instance-clause-in-the-interface">
+<h3><code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause in the interface<a class="headerlink" href="#interface-instance-clause-in-the-interface" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="kt">MyNewInterface</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+  <span class="n">myNewMethod1</span> <span class="kt">:</span> <span class="kt">Party</span>
+  <span class="n">myNewMethod2</span> <span class="kt">:</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+
+  <span class="kr">choice</span> <span class="kt">MyNewChoice</span> <span class="kt">:</span> <span class="kt">Int</span>
+    <span class="kr">controller</span> <span class="n">myNewMethod1</span> <span class="kr">this</span>
+    <span class="kr">do</span> <span class="n">pure</span> <span class="o">$</span> <span class="n">myNewMethod2</span> <span class="kr">this</span> <span class="mi">0</span>
+
+  <span class="kr">interface</span> <span class="kr">instance</span> <span class="kt">MyNewInterface</span> <span class="kr">for</span> <span class="kt">NameOfTemplate</span> <span class="kr">where</span>
+    <span class="n">view</span> <span class="ow">=</span> <span class="kt">EmptyInterfaceView</span>
+    <span class="n">myNewMethod1</span> <span class="ow">=</span> <span class="n">field1</span>
+    <span class="n">myNewMethod2</span> <span class="n">x</span> <span class="ow">=</span> <span class="n">field2</span> <span class="p">`</span><span class="n">min</span><span class="p">`</span> <span class="n">x</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>To make an <em>existing</em> template an instance of a new interface, the
+<code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause must be defined in the <em>interface</em> declaration.</li>
+<li>In this case, the <em>interface</em> of the clause must match the enclosing
+declaration. In other words, an interface <code class="docutils literal notranslate"><span class="pre">I</span></code> declaration can only contain
+<code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clauses where the interface is <code class="docutils literal notranslate"><span class="pre">I</span></code>.</li>
+<li>All other rules for <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clauses are the same whether the
+enclosing declaration is a template or an interface. In particular, the
+implicit local binding <code class="docutils literal notranslate"><span class="pre">this</span></code> always has the type of the <em>template</em>’s
+record.</li>
+</ul>
+</div>
+<div class="section" id="empty-interface-instance-clause">
+<h3>Empty <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> clause<a class="headerlink" href="#empty-interface-instance-clause" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If the interface has no methods, the interface instance only needs to
+implement the <code class="docutils literal notranslate"><span class="pre">view</span></code> method:</li>
+</ul>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span>    <span class="kr">interface</span> <span class="kr">instance</span> <span class="kt">YourInterface</span> <span class="kr">for</span> <span class="kt">NameOfTemplate</span> <span class="kr">where</span>
+      <span class="n">view</span> <span class="ow">=</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="interface-functions">
+<span id="daml-ref-interface-functions"></span><h2>Interface Functions<a class="headerlink" href="#interface-functions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interfacetyperep">
+<h3><code class="docutils literal notranslate"><span class="pre">interfaceTypeRep</span></code><a class="headerlink" href="#interfacetyperep" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">HasInterfaceTypeRep</span> <span class="pre">i</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">-&gt;</span> <span class="pre">TemplateTypeRep</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><code class="docutils literal notranslate"><span class="pre">MyInterface</span> <span class="pre">-&gt;</span> <span class="pre">TemplateTypeRep</span></code></td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>The value of the resulting <code class="docutils literal notranslate"><span class="pre">TemplateTypeRep</span></code> indicates what template
+was used to construct the interface value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="tointerface">
+<h3><code class="docutils literal notranslate"><span class="pre">toInterface</span></code><a class="headerlink" href="#tointerface" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">i</span> <span class="pre">t.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">HasToInterface</span> <span class="pre">t</span> <span class="pre">i</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">i</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><code class="docutils literal notranslate"><span class="pre">MyTemplate</span> <span class="pre">-&gt;</span> <span class="pre">MyInterface</span></code></td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Converts a template value into an interface value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="frominterface">
+<h3><code class="docutils literal notranslate"><span class="pre">fromInterface</span></code><a class="headerlink" href="#frominterface" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">HasFromInterface</span> <span class="pre">t</span> <span class="pre">i</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">-&gt;</span> <span class="pre">Optional</span> <span class="pre">t</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><code class="docutils literal notranslate"><span class="pre">MyInterface</span> <span class="pre">-&gt;</span> <span class="pre">Optional</span> <span class="pre">MyTemplate</span></code></td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Attempts to convert an interface value back into a template value.
+The result is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the expected template type doesn’t match the
+underlying template type used to construct the contract.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="tointerfacecontractid">
+<h3><code class="docutils literal notranslate"><span class="pre">toInterfaceContractId</span></code><a class="headerlink" href="#tointerfacecontractid" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">i</span> <span class="pre">t.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">HasToInterface</span> <span class="pre">t</span> <span class="pre">i</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">t</span> <span class="pre">-&gt;</span> <span class="pre">ContractId</span> <span class="pre">i</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">MyTemplate</span> <span class="pre">-&gt;</span> <span class="pre">ContractId</span> <span class="pre">MyInterface</span></code></td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Converts a template Contract ID into an Interface Contract ID.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="frominterfacecontractid">
+<h3><code class="docutils literal notranslate"><span class="pre">fromInterfaceContractId</span></code><a class="headerlink" href="#frominterfacecontractid" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">t</span> <span class="pre">i.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">HasFromInterface</span> <span class="pre">t</span> <span class="pre">i</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">i</span> <span class="pre">-&gt;</span> <span class="pre">ContractId</span> <span class="pre">t</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">MyInterface</span> <span class="pre">-&gt;</span> <span class="pre">ContractId</span> <span class="pre">MyTemplate</span></code></td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Converts an interface contract id into a template contract id.
+This function does not verify that the given contract id actually points
+to a contract of the resulting type; if that is not the case, a
+subsequent <code class="docutils literal notranslate"><span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">exercise</span></code> or <code class="docutils literal notranslate"><span class="pre">archive</span></code> will fail.
+Therefore, this should only be used when the underlying contract is known
+to be of the resulting type, or when the result is immediately used by a
+<code class="docutils literal notranslate"><span class="pre">fetch</span></code>, <code class="docutils literal notranslate"><span class="pre">exercise</span></code> or <code class="docutils literal notranslate"><span class="pre">archive</span></code> action and a transaction failure
+is the desired behavior in case of mismatch.
+In all other cases, consider using <code class="docutils literal notranslate"><span class="pre">fetchFromInterface</span></code> instead.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fetchfrominterface">
+<h3><code class="docutils literal notranslate"><span class="pre">fetchFromInterface</span></code><a class="headerlink" href="#fetchfrominterface" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">forall</span> <span class="pre">t</span> <span class="pre">i.</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">(HasFromInterface</span> <span class="pre">t</span> <span class="pre">i,</span> <span class="pre">HasFetch</span> <span class="pre">i)</span> <span class="pre">=&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">i</span> <span class="pre">-&gt;</span> <span class="pre">Update</span> <span class="pre">(Optional</span> <span class="pre">(ContractId</span> <span class="pre">t,</span> <span class="pre">t))</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td>Instantiated Type</td>
+<td><div class="first last line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">MyInterface</span> <span class="pre">-&gt;</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">Update</span> <span class="pre">(Optional</span> <span class="pre">(ContractId</span> <span class="pre">MyTemplate,</span> <span class="pre">MyTemplate))</span></code></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td>Notes</td>
+<td>Attempts to fetch and convert an interface contract id into a template,
+returning both the converted contract and its contract id if the
+conversion is successful, or <code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="required-interfaces">
+<h2>Required Interfaces<a class="headerlink" href="#required-interfaces" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This feature is under active development and not officially supported in
+production environments.
+Required interfaces are only available when targeting Daml-LF 1.dev.</p>
+</div>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="kt">OurInterface</span> <span class="n">requires</span> <span class="kt">MyInterface</span><span class="p">,</span> <span class="kt">YourInterface</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">An interface can depend on other interfaces. These are specified with the
+<code class="docutils literal notranslate"><span class="pre">requires</span></code> keyword after the interface name but before the
+<code class="docutils literal notranslate"><span class="pre">where</span></code> keyword, separated by commas.</p>
+</li>
+<li><p class="first">For an interface declaration to be valid, its list of required interfaces
+must be transitively closed. In other words, an interface <code class="docutils literal notranslate"><span class="pre">I</span></code> cannot
+require an interface <code class="docutils literal notranslate"><span class="pre">J</span></code> without also explicitly requiring all the
+interfaces required by <code class="docutils literal notranslate"><span class="pre">J</span></code>. The order, however, is irrelevant.</p>
+<p>For example, given</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="kt">Shape</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+
+<span class="kr">interface</span> <span class="kt">Rectangle</span> <span class="n">requires</span> <span class="kt">Shape</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+<p>This declaration for interface <code class="docutils literal notranslate"><span class="pre">Square</span></code> would cause a compiler error</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Compiler error! &quot;Interface Square is missing requirement [Shape]&quot;</span>
+<span class="kr">interface</span> <span class="kt">Square</span> <span class="n">requires</span> <span class="kt">Rectangle</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+<p>Explicitly adding <code class="docutils literal notranslate"><span class="pre">Shape</span></code> to the required interfaces fixes the error</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">interface</span> <span class="kt">Square</span> <span class="n">requires</span> <span class="kt">Rectangle</span><span class="p">,</span> <span class="kt">Shape</span> <span class="kr">where</span>
+  <span class="kr">viewtype</span> <span class="kt">EmptyInterfaceView</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">For a template <code class="docutils literal notranslate"><span class="pre">T</span></code> to be a valid <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> of an interface
+<code class="docutils literal notranslate"><span class="pre">I</span></code>, <code class="docutils literal notranslate"><span class="pre">T</span></code> must also be an <code class="docutils literal notranslate"><span class="pre">interface</span> <span class="pre">instance</span></code> of each of the interfaces
+required by <code class="docutils literal notranslate"><span class="pre">I</span></code>.</p>
+</li>
+</ul>
+<div class="section" id="id3">
+<h3>Interface Functions<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Function</th>
+<th class="head">Notes</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">toInterface</span></code></td>
+<td>Can also be used to convert an interface value to one of its required
+interfaces.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">fromInterface</span></code></td>
+<td>Can also be used to convert a value of an interface type to one of its
+requiring interfaces.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">toInterfaceContractId</span></code></td>
+<td>Can also be used to convert an interface contract id into a contract id
+of one of its required interfaces.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">fromInterfaceContractId</span></code></td>
+<td>Can also be used to convert an interface contract id into a contract id
+of one of its requiring interfaces.</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">fetchFromInterface</span></code></td>
+<td>Can also be used to fetch and convert an interface contract id into a
+contract and contract id of one of its requiring interfaces.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+              
+            </div>
+            
+            
+              <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exceptions.html" class="da-btn da-btn-label btn-prev" title="Reference: Exceptions" accesskey="p" rel="prev">Previous</a>
+      
+      
+        <a href="../stdlib/index.html" class="da-btn da-btn-label btn-next" title="The standard library" accesskey="n" rel="next">Next</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. Any unauthorized use, duplication or distribution is strictly prohibited. &#34;Digital Asset&#34; and &#34;Daml&#34; are Registered in the U.S. Patent and Trademark Office.
+
+    </p>
+  </div> 
+
+</footer>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+  
+    
+  
+  <div id="inpageContent"></div>
+  
+
+</body>
+</html>
