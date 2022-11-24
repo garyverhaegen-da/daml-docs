@@ -1,0 +1,762 @@
+<!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>An Introduction To Multi-Party Applications and Daml &mdash; Daml SDK 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/clipboard.min.js"></script>
+  <script src="_static/copybutton.js"></script>
+  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Dummy Canton Refs" href="canton-refs.html" />
+  <link rel="prev" title="Building Applications" href="building-applications.html" /> 
+
+  
+  <link rel="icon" type="image/svg+xml"  href="_static/images/daml-logo-mark-light.svg">
+  <link rel="alternate icon" href="_static/images/daml-favicon-1.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSWJMNX');</script>
+  <!-- End Google Tag Manager -->
+
+  
+  <!-- Mopinion Pastea.se  start --><script type="text/javascript">(function(){var id="4s6vwov7ad6qyxhq8iwbyhocrsn2nm36k25";var js=document.createElement("script");js.setAttribute("type","text/javascript");js.setAttribute("src","//deploy.mopinion.com/js/pastease.js");js.async=true;document.getElementsByTagName("head")[0].appendChild(js);var t=setInterval(function(){try{new Pastease.load(id);clearInterval(t)}catch(e){}},50)})();</script><!-- Mopinion Pastea.se end -->
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSWJMNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-nav-side-shadow"></div>
+      <div class="wy-side-scroll">
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+          
+          
+          
+          
+          
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Daml Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/app-arch.html"> app-dev/app-arch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-ts/index.html"> app-dev/bindings-ts/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-ts/daml-react.html"> app-dev/bindings-ts/daml-react</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-ts/daml-types.html"> app-dev/bindings-ts/daml-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-ts/daml-ledger.html"> app-dev/bindings-ts/daml-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-ts/daml2js.html"> app-dev/bindings-ts/daml2js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/parties-users.html"> app-dev/parties-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/grpc/index.html"> app-dev/grpc/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/grpc/error-codes.html"> app-dev/grpc/error-codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/grpc/daml-to-ledger-api.html"> app-dev/grpc/daml-to-ledger-api</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/services.html"> app-dev/services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-x-lang/index.html"> app-dev/bindings-x-lang/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/daml-lf-translation.html"> app-dev/daml-lf-translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-python.html"> app-dev/bindings-python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/command-deduplication.html"> app-dev/command-deduplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/ledger-api.html"> app-dev/ledger-api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/authorization.html"> app-dev/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-java/index.html"> app-dev/bindings-java/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-java/codegen.html"> app-dev/bindings-java/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-java/quickstart.html"> app-dev/bindings-java/quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app-dev/bindings-java/example.html"> app-dev/bindings-java/example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/index.html"> json-api/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/lf-value-specification.html"> json-api/lf-value-specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/search-query-language.html"> json-api/search-query-language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/security-and-privacy.html"> json-api/production-setup/security-and-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/scaling-and-redundancy.html"> json-api/production-setup/scaling-and-redundancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/metrics.html"> json-api/production-setup/metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/query-store.html"> json-api/production-setup/query-store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/logging.html"> json-api/production-setup/logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup/architecture.html"> json-api/production-setup/architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="json-api/production-setup.html"> json-api/production-setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade/index.html"> upgrade/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade/extend.html"> upgrade/extend</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade/upgrade.html"> upgrade/upgrade</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrade/automation.html"> upgrade/automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/auth-middleware/index.html"> tools/auth-middleware/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools/auth-middleware/oauth2.html"> tools/auth-middleware/oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/canton-console.html"> tools/canton-console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/trigger-service/index.html"> tools/trigger-service/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools/trigger-service/auth0_example.html"> tools/trigger-service/auth0_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/trigger-service/authorization.html"> tools/trigger-service/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/assistant.html"> tools/assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/codegen.html"> tools/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/non-repudiation.html"> tools/non-repudiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/visual.html"> tools/visual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/navigator/index.html"> tools/navigator/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/sandbox.html"> tools/sandbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/profiler.html"> tools/profiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/export/index.html"> tools/export/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml-off-ledger.html"> daml-off-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="triggers/index.html"> triggers/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploy/generic_ledger.html"> deploy/generic_ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operating-daml.html"> operating-daml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ops/pruning.html">Participant Pruning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops/metering.html">Participant Metering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops/requirements.html">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ops/system_architecture_faq.html">System Architecture FAQ</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing-daml.html"> writing-daml</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/0_Intro.html">An Introduction to Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/1_Token.html">Basic Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/2_DamlScript.html">Test Templates Using Daml Script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/3_Data.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/4_Transformations.html">Transform Data Using Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/5_Restrictions.html">Add Constraints to a Contract</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/6_Parties.html">Parties and Authority</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/7_Composing.html">Composing Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/8_Exceptions.html">Exception Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/9_Dependencies.html">Work with Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/10_Functional101.html">Functional Programming 101</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/11_StdLib.html">Introduction to the Daml Standard Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/12_Testing.html">Test Daml Contracts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/intro/99_NextSteps.html">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/index.html">Language Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/templates.html">Templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/choices.html">Choices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/updates.html">Updates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/data-types.html">Data types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/working-with.html">Built-in functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/expressions.html">Expressions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/functions.html">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/file-structure.html">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/packages.html">Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/contract-keys.html">Contract keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/exceptions.html">Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/reference/interfaces.html">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="daml/stdlib/index.html">The standard library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/Prelude.html">Prelude</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Action.html">DA.Action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Action-State.html">DA.Action.State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Action-State-Class.html">DA.Action.State.Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Assert.html">DA.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Bifunctor.html">DA.Bifunctor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-BigNumeric.html">DA.BigNumeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Date.html">DA.Date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Either.html">DA.Either</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Exception.html">DA.Exception</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Foldable.html">DA.Foldable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Functor.html">DA.Functor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Internal-Interface-AnyView.html">DA.Internal.Interface.AnyView</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Internal-Interface-AnyView-Types.html">DA.Internal.Interface.AnyView.Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-List.html">DA.List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-List-BuiltinOrder.html">DA.List.BuiltinOrder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-List-Total.html">DA.List.Total</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Logic.html">DA.Logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Map.html">DA.Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Math.html">DA.Math</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Monoid.html">DA.Monoid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-NonEmpty.html">DA.NonEmpty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-NonEmpty-Types.html">DA.NonEmpty.Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Numeric.html">DA.Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Optional.html">DA.Optional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Record.html">DA.Record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Semigroup.html">DA.Semigroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Set.html">DA.Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Stack.html">DA.Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Text.html">DA.Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-TextMap.html">DA.TextMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Time.html">DA.Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Traversable.html">DA.Traversable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Tuple.html">DA.Tuple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/DA-Validation.html">DA.Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/GHC-Show-Text.html">GHC.Show.Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/stdlib/GHC-Tuple-Check.html">GHC.Tuple.Check</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns.html">Good Design Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l4"><a class="reference internal" href="daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html"> tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools/assistant.html">Daml Assistant (<code class="docutils literal notranslate"><span class="pre">daml</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/daml-studio.html">Daml Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/sandbox.html">Daml Sandbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/navigator/index.html">Navigator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/codegen.html">Daml Codegen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools/profiler.html">Daml Profiler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daml-repl/index.html"> daml-repl/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/considerations.html"> daml/considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/daml-studio.html"> daml/daml-studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/locking.html"> daml/patterns/locking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/initaccept.html"> daml/patterns/initaccept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/multiparty-agreement.html"> daml/patterns/multiparty-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/locking/locking-by-safekeeping.html"> daml/patterns/locking/locking-by-safekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/locking/locking-by-state.html"> daml/patterns/locking/locking-by-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/locking/locking-by-archiving.html"> daml/patterns/locking/locking-by-archiving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/legends.html"> daml/patterns/legends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/delegation.html"> daml/patterns/delegation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns/authorization.html"> daml/patterns/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/3_Data.html"> daml/intro/3_Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/8_Exceptions.html"> daml/intro/8_Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/12_Testing.html"> daml/intro/12_Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/5_Restrictions.html"> daml/intro/5_Restrictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/6_Parties.html"> daml/intro/6_Parties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/99_NextSteps.html"> daml/intro/99_NextSteps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/2_DamlScript.html"> daml/intro/2_DamlScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/10_Functional101.html"> daml/intro/10_Functional101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/1_Token.html"> daml/intro/1_Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/0_Intro.html"> daml/intro/0_Intro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/1_Token.html">Basic Contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/2_DamlScript.html">Test Templates Using Daml Script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/3_Data.html">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/4_Transformations.html">Transform Data Using Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/5_Restrictions.html">Add Constraints to a Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/6_Parties.html">Parties and Authority</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/7_Composing.html">Composing Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/8_Exceptions.html">Exception Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/9_Dependencies.html">Work with Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/10_Functional101.html">Functional Programming 101</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/11_StdLib.html">Introduction to the Daml Standard Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/12_Testing.html">Test Daml Contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/intro/99_NextSteps.html">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/4_Transformations.html"> daml/intro/4_Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/7_Composing.html"> daml/intro/7_Composing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/9_Dependencies.html"> daml/intro/9_Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/intro/11_StdLib.html"> daml/intro/11_StdLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/patterns.html"> daml/patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="daml/patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daml/troubleshooting.html"> daml/troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/templates.html"> daml/reference/templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/index.html"> daml/reference/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/choices.html">Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/updates.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/data-types.html">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/working-with.html">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/expressions.html">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/file-structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/contract-keys.html">Contract keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml/reference/interfaces.html">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/working-with.html"> daml/reference/working-with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/functions.html"> daml/reference/functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/data-types.html"> daml/reference/data-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/choices.html"> daml/reference/choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/packages.html"> daml/reference/packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/expressions.html"> daml/reference/expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/structure.html"> daml/reference/structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/contract-keys.html"> daml/reference/contract-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/file-structure.html"> daml/reference/file-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/updates.html"> daml/reference/updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/exceptions.html"> daml/reference/exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml/reference/interfaces.html"> daml/reference/interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/index.html"> getting-started/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/testing.html"> getting-started/testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/path-variables.html"> getting-started/path-variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/manual-download.html"> getting-started/manual-download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/app-architecture.html"> getting-started/app-architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/first-feature.html"> getting-started/first-feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/installation.html"> getting-started/installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support/support.html"> support/support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support/status-definitions.html"> support/status-definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support/overview.html"> support/overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="support/status-definitions.html">Status Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="support/component-statuses.html">Feature and Component Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="support/releases.html"> support/releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support/compatibility.html"> support/compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="support/component-statuses.html"> support/component-statuses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/time.html"> concepts/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/index.html"> concepts/ledger-model/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts/ledger-model/ledger-structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/ledger-model/ledger-integrity.html">Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/ledger-model/ledger-privacy.html">Privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/ledger-model/ledger-daml.html">Daml: Define Contract Models Compactly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts/ledger-model/ledger-exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/ledger-privacy.html"> concepts/ledger-model/ledger-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/ledger-structure.html"> concepts/ledger-model/ledger-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/ledger-integrity.html"> concepts/ledger-model/ledger-integrity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/ledger-daml.html"> concepts/ledger-model/ledger-daml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/ledger-model/ledger-exceptions.html"> concepts/ledger-model/ledger-exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/interoperability.html"> concepts/interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/test-evidence.html"> concepts/test-evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/identity-and-package-management.html"> concepts/identity-and-package-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/glossary.html"> concepts/glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts/local-ledger.html"> concepts/local-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops/system_architecture_faq.html"> ops/system_architecture_faq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops/requirements.html"> ops/requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops/pruning.html"> ops/pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ops/metering.html"> ops/metering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="daml-script/index.html"> daml-script/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="building-applications.html"> building-applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/app-arch.html">Daml Application Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-ts/index.html">Using JavaScript Client Libraries with Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="json-api/index.html">HTTP JSON API Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-java/index.html">Java Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/bindings-python.html">Python Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="daml-script/index.html">Daml Script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="daml-repl/index.html">Daml REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade/index.html">Upgrading and Extending Daml Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/ledger-api.html">The Ledger API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="app-dev/command-deduplication.html">Command Deduplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="triggers/index.html">Daml Triggers - Off-Ledger Automation in Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools/trigger-service/index.html">Trigger Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools/auth-middleware/index.html">Auth Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> high-level-intro</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="canton-refs.html">Dummy Canton Refs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="canton-refs.html#dummy-toc-refs">Dummy TOC Refs</a></li>
+</ul>
+
+          
+          
+          
+          <div class="pdf-download"><a href="_downloads/DigitalAssetSDK.pdf" download>Download as PDF</a></div>
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="topbar fixed">
+        
+        <nav class="wy-nav-top" aria-label="top navigation">
+          
+          <i data-toggle="wy-nav-top" class="wy-nav-top-toggle"></i>
+          
+        </nav>
+        <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="navbar">
+    <h1><img src="_static/images/Daml_Logo_Blue.svg"></h1>
+    <div class="navbar-menu">
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/developers" role="menuitem" class="da-menu-link">Developers</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/products" role="menuitem" class="da-menu-link">Products</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com" role="menuitem" class="da-menu-link">Company</a>
+        </div>
+    </div>
+</div>
+
+        <div class="version ">
+          <span class="hide-mobile">Version&nbsp;</span><span class="version_switcher_placeholder"></span>
+          
+        </div>
+
+
+        <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+<div class="search-inline landing">
+    <div id="rtd-search-inline-form" class="wy-form">
+        <input type="text" class="search-inline-input" placeholder="Search" name="q">
+        <img src="_static/images/Search.svg" class="search-inline-img"/>
+    </div>
+    <div class="search-alert">
+        Please enter at least 3 letters.
+    </div>
+    <div id="search-inline-results" class="search-inline-results">
+        
+    </div>
+</div>
+          <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="content-menu collapsed">
+    <span class="content-menu-title">In This Section</span>
+    <span class="content-menu-expand"></span>
+    <div class="content-menu-wrapper">
+        
+        <!-- Local TOC -->
+        <div class="content-menu-toc"><ul>
+<li><a class="reference internal" href="#">An Introduction To Multi-Party Applications and Daml</a><ul>
+<li><a class="reference internal" href="#why-do-multi-party-applications-matter">Why Do Multi-Party Applications Matter?</a></li>
+<li><a class="reference internal" href="#what-is-a-multi-party-application">What Is a Multi-Party Application?</a></li>
+<li><a class="reference internal" href="#important-concepts-in-multi-party-applications">Important Concepts in Multi-Party Applications</a></li>
+<li><a class="reference internal" href="#key-architectural-concepts-in-daml">Key Architectural Concepts in Daml</a></li>
+<li><a class="reference internal" href="#transfer-example-using-daml">Transfer Example Using Daml</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        
+    </div>
+</div>
+        
+
+      </div>
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+                
+  <div class="section" id="an-introduction-to-multi-party-applications-and-daml">
+<h1>An Introduction To Multi-Party Applications and Daml<a class="headerlink" href="#an-introduction-to-multi-party-applications-and-daml" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Multi-party applications, and multi-party application platforms like Daml, solve problems that were nearly impossible to solve with the technologies and architectures that came before. Successfully building multi-party applications requires learning a few new concepts, including architectural principles and patterns. This document explains:</dt><dd><ul class="simple">
+<li>why multi-party applications matter</li>
+<li>what a multi-party application is</li>
+<li>important concepts in multi-party applications</li>
+<li>key architectural concepts in Daml</li>
+<li>a transfer example using Daml</li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="why-do-multi-party-applications-matter">
+<h2>Why Do Multi-Party Applications Matter?<a class="headerlink" href="#why-do-multi-party-applications-matter" title="Permalink to this headline">¶</a></h2>
+<p>Have you ever wondered why bank transfers, stock purchases or healthcare claims take days to process? Given our technological advances, including the speed of networks, you might expect these transactions to take less than a second to complete. An inefficient protocol like email takes only a few seconds to send and receive, while these important business workflows take days or weeks.</p>
+<p>What delays these transactions? The processes in question all involve multiple organizations that each keep their own records, resulting in data silos. The processes to ensure consistency between those data silos are complex and slow. When inconsistencies arise, the correction processes (sometimes referred to as reconciliation) are expensive, time-consuming and often require human intervention to determine why two parties have differing views of the result of a business interaction. There are a myriad of reasons for these discrepancies, including differences in data models and error handling logic, inconsistent business process implementations and system faults.</p>
+<p>Here’s a deeper look at the problem via the example of a transfer of $100 from Alice’s account in Bank A to Bob’s account in Bank B. (Money is an easily understood example of an asset transferred between parties. The same problems occur in other industries with other assets, for example, healthcare claims, invoices or orders.) Money cannot simply appear or disappear during a transfer. The banks need to ensure that at some point in time, T_0, $100 are in Alice’s account, and at the next point in time, T_1, those $100 are gone from Alice’s account and present in Bob’s account – but at no point are the $100 present in both accounts or in neither account.</p>
+<p>In legacy systems, each bank keeps track of cash holdings independently of the other banks. Each bank stores data in its own private database. Each bank performs its own processes to validate, secure, modify and regulate the workflows that transfer money. The coordination between multiple banks is highly complex. The banks have an obligation to limit their counterparty risk - the probability that the other party in the transaction may not fulfill its part of the deal and may default on the contractual obligations.</p>
+<p>Today’s common, albeit highly inefficient and costly, solution for a bank account transfer involves the following steps:
+#. Bank A sends a message to Bank B via a messaging standard and provider like SWIFT or SEPA.
+#. Bank A and Bank B determine a settlement plan, possibly including several intermediaries. Gaining an agreement on the settlement plan is time-consuming and often includes additional fees.
+#. The settlement process entails (i) debiting $100 from Alice’s account at Bank A, (ii) crediting the commercial account at Bank B, and (iii) once Bank B has the money, crediting Bob’s account at Bank B.</p>
+<p>In order to make this process atomic (that is, to make it take place between a point T_0 and a point T_1) banks discretize time into business days. On day T_0 the instruction is made and a settlement plan is created. Outside of business hours between day T_0 and day T_1, the plan is executed through end of day netting and settlement processes. In a sense, banks agree to stop time outside of business hours.</p>
+<p>If intermediaries are involved, the process is more complex. Cross-border payments or currency conversion add yet more complexity. The resulting process is costly and takes days. During this multi-day process the $100 is locked within the system where it is useless to both Alice and Bob. Delays are common, and if there are problems reconciliation is hugely expensive. Consolidating through centralized intermediaries introduces systemic risk, including the risk of unauthorized disclosure and privacy breaches - and with that risk comes increased latency. Banks insist on this approach, despite the downsides, to reduce counterparty risk and to comply with regulations. At every point in time, ownership of the money is completely clear. (To learn more about cash transfers in traditional banking systems, read <a class="reference external" href="https://web.archive.org/web/20220731223958/https://medium.com/&#64;yudapramad/how-international-money-transfers-actually-work-bac65f075bb5">this accessible writeup on international money transfers</a>.)</p>
+<p>Services like PayPal, Klarna and credit cards, which provide an experience of instant payments internationally, do this by accepting the counterparty risk or acting as banks themselves. If a shop accepts credit cards and you pay with a credit card, both you and the shop have an account with the credit card company. When you purchase, the credit card company can instantly debit $100 from your account and credit $100 to the shop’s account because it is as if both Alice and Bob are using accounts at the same bank – the bank is certain that Alice has $100 in her account and can execute a simple transaction that deducts $100 from Alice’s account and adds $100 to Bob’s.</p>
+<p>Wouldn’t it be great if a system existed that allowed multiple parties to transact with each other with the same immediacy and consistency guarantees a single organization can achieve on a database while each kept sovereignty and privacy of their data? That’s Daml!</p>
+<p>Daml is a platform and framework for building real-time multi-party systems, enabling organizations to deliver the experiences modern users expect without assuming counterparty risk or the expense of reconciliation. The sections below describe how Daml achieves this, including the architectural concepts and considerations necessary to build and deploy a solution with Daml effectively.</p>
+</div>
+<div class="section" id="what-is-a-multi-party-application">
+<h2>What Is a Multi-Party Application?<a class="headerlink" href="#what-is-a-multi-party-application" title="Permalink to this headline">¶</a></h2>
+<p>A multi-party application is one in which data, and the rules and workflows that govern the data, are shared between two or more parties without any party having to give up sovereignty or any single party (including the application provider) being able to control or override the agreed rules of the system. A party could be a company, a department within a company, an organization, an individual or a person. The specific definition of a party will be unique to the application and the domain of that application, much like the objects within an object-oriented application are unique to that application.</p>
+<dl class="docutils">
+<dt>A well-designed multi-party application provides several benefits:</dt><dd><ul class="simple">
+<li>a clean, consistent view of all data managed by the application across all parties</li>
+<li>consistent, connected, and efficient processes between all parties involved in the application</li>
+<li>privacy controls over portions of the shared data, such that each party sees only the data that it is explicitly entitled to view and/or modify</li>
+<li>individual party ownership of and responsibility for sensitive data</li>
+</ul>
+</dd>
+</dl>
+<p>In most cases, no single party can view all of the data within a multi-party application.</p>
+<p>Multi-party applications solve complex operational processes while keeping data clean and consistent, thereby eliminating isolated, disconnected and inefficient processes that often require expensive reconciliation. Multi-party applications manage the relationships, agreements and transactions between parties, providing consistent real-time views of all data.</p>
+<p>Multi-party solutions utilize distributed ledger (blockchain) technology to ensure each party has an immutable, consistent view of the shared data and business processes that govern the data. By providing a consistent view of data with all counterparties, a multi-party application removes friction, cost, and risk within a joint business process. A distributed ledger protects against a malicious participant in the network, attempting to write or overwrite data to the detriment of other parties.</p>
+</div>
+<div class="section" id="important-concepts-in-multi-party-applications">
+<h2>Important Concepts in Multi-Party Applications<a class="headerlink" href="#important-concepts-in-multi-party-applications" title="Permalink to this headline">¶</a></h2>
+<p>For a multi-party application to fully deliver its value, the following conditions must be met:</p>
+<p>Multiple involved parties have data sovereignty – that is, they keep their data within their own systems and require strong guarantees that no external party can access or modify that data outside of pre-agreed rules.
+Shared state and rules are codified into an executable schema that determines what data can move between parties, who can read that data, and how that data is manipulated.
+Processes happen in real time as there is no additional reconciliation or manual processing required between organizations.</p>
+<dl class="docutils">
+<dt>For each individual party to gain the full benefits of a multi-party system, it should:</dt><dd><ul class="simple">
+<li>Integrate the application - Bank A must treat the multi-party infrastructure as the golden source of truth for payment information and integrate it as such with the rest of their infrastructure. Otherwise they are merely trading inter-bank reconciliation for intra-bank reconciliation.</li>
+<li>Utilize composability by building advanced systems that rely on the base-level multi-party agreements. For example, a healthcare claim application should be built using the payment solution. Integrating one multi-party application with another preserves all the properties of each across both applications. In this example, the patient privacy requirements of a health claims application are retained, as are the financial guarantees of the payment application. Without composability, multi-party applications become bigger silos and you end up reconciling the healthcare claims multi-party application with the payments multi-party application.</li>
+</ul>
+</dd>
+</dl>
+<p>Smart contracts, distributed ledgers, and blockchains are commonly used to build and deliver multi-party applications. A smart contract codifies the terms of the agreement between parties, including the rights and obligations of each party, directly written into lines of code. The code controls the execution, and transactions are trackable and irreversible. In a multi-party application, the smart contract defines the data workflow through actions taken by the parties involved.</p>
+<p>Distributed ledgers and blockchains provide consensus between the parties, with a cryptographic audit trail maintained and validated by the system. Within multi-party solutions, the distributed ledger ensures no one party can unilaterally change the system’s state and protects data sovereignty, while the distributed ledger synchronizes the nodes securely in real time.</p>
+</div>
+<div class="section" id="key-architectural-concepts-in-daml">
+<h2>Key Architectural Concepts in Daml<a class="headerlink" href="#key-architectural-concepts-in-daml" title="Permalink to this headline">¶</a></h2>
+<p>Daml comprises two layers necessary for building multi-party applications: the Daml smart contract language and the Canton blockchain and protocol.</p>
+<p>The Daml language is a smart contract language for multi-party applications. Conceptually, Daml is similar to the Structured Query Language (SQL) used in traditional database systems, describing the data schema and rules for manipulating the data.</p>
+<dl class="docutils">
+<dt>The Daml language:</dt><dd><ul class="simple">
+<li>defines the shared state between the parties, including process permissions and data ownership</li>
+<li>defines workflows, execution policies, and read/write permissions</li>
+<li>enables developers to build rich transactions that codify strict business rules</li>
+<li>defines the APIs through which multi-party applications can talk to each other and compose</li>
+</ul>
+</dd>
+</dl>
+<p>The Daml code that collectively makes up the data schema and rules for an application is called a Daml model. Increasingly sophisticated and valuable solutions are composed from existing Daml models, enabling a rich ecosystem that accelerates application development.</p>
+<p>Using the Daml language, developers define the schema for a virtual shared system of record (VSSR). A VSSR is the combined data from all parties involved in the application. The Canton protocol ensures that each party gets a unique view into the VSSR, which is their projection of the full system.</p>
+<p>In the execution model for Canton, each party of the application is hosted on a Participant Node (Diagram 1). The Participant Node stores the party’s unique projection and history of the shared system of record. Participant Nodes synchronize by running a consensus protocol (the Canton Protocol) between them. The protocol is executed by sending encrypted messages through Domains, which route messages and offer guaranteed delivery and order consistency. Domains are also units of access control and availability, meaning an application can be additionally protected from interference by other applications or malicious actors by synchronizing it only through a given domain, and restricting which participants can connect to it.</p>
+<p>Diagram 1:</p>
+<div class="figure align-default">
+<img alt="A Domain (center) with four Participant Nodes. Participant Node One hosts Party A; Participant Node Two hosts Party B; Participant Node Three hosts Party C; and Participant Node Four hosts Parties D, E, and F. The Domain can be centralized or distributed, public or private." src="_images/arch-intro-1.png" />
+</div>
+<p>In a composed solution, each domain is a sub-network. A Participant Node connects to one or more Domains, enabling transactions that span Domains (Diagram 2).</p>
+<p>Diagram 2:</p>
+<div class="figure align-default">
+<img alt="Three Domains with five Participant Nodes, each hosting one or more parties. Domains A (HL Fabric) and B (Ethereum) have two Domain Nodes each, while Domain C (SQL) has a single Domain Node. Each Participant Node can connect to different Domain Nodes across different Domains." src="_images/arch-intro-2.png" />
+</div>
+</div>
+<div class="section" id="transfer-example-using-daml">
+<h2>Transfer Example Using Daml<a class="headerlink" href="#transfer-example-using-daml" title="Permalink to this headline">¶</a></h2>
+<p>Consider the transfer example described above with Alice and Bob. Using Daml, the process looks like this:
+#. Alice logs into her online banking at Bank A and enters a transfer to Bob at Bank B.
+#. The online banking backend creates a transaction that deducts $100 from Alice’s account and creates a transfer to Bob at Bank B.
+#. When Bank B accepts the transfer, Bank A credits $100 to Bank B’s account at Bank A and Bank B simultaneously credits Bob’s account by $100.
+#. Bob’s online banking interfaces with the Daml Ledger and can see the incoming funds in real time.</p>
+<p>At every point, ownership of the $100 is completely clear and all systems are fully consistent.</p>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>The suggested next steps are:</p>
+<ul class="simple">
+<li>Learn about the Daml language and the Daml Ledger Model. <a class="reference internal" href="daml/intro/0_Intro.html"><span class="doc">Writing Daml</span></a> will introduce you to the basics of a Daml contract, the Daml Ledger model, and the core features of the Daml language. You’ll notice that testing your contracts, including <a class="reference internal" href="daml/intro/2_DamlScript.html#intro-2-failure"><span class="std std-ref">testing for failures</span></a>, is presented very early in this introduction. We strongly recommend that you write tests as part of the initial development of every Daml project.</li>
+<li>Learn about operating a Daml application with the <a class="reference internal" href="canton-refs.html#ledger-administration-introduction"><span class="std std-ref">Ledger Administration Introduction</span></a>.</li>
+</ul>
+</div>
+</div>
+
+
+              
+            </div>
+            
+            
+              <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="building-applications.html" class="da-btn da-btn-label btn-prev" title="Building Applications" accesskey="p" rel="prev">Previous</a>
+      
+      
+        <a href="canton-refs.html" class="da-btn da-btn-label btn-next" title="Dummy Canton Refs" accesskey="n" rel="next">Next</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. Any unauthorized use, duplication or distribution is strictly prohibited. &#34;Digital Asset&#34; and &#34;Daml&#34; are Registered in the U.S. Patent and Trademark Office.
+
+    </p>
+  </div> 
+
+</footer>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+  
+    
+  
+  <div id="inpageContent"></div>
+  
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+Daml Files
+----------
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 0
+   :hidden:
+
+   self
+    app-dev/app-arch <app-dev/app-arch>
+    app-dev/bindings-ts/index <app-dev/bindings-ts/index>
+    app-dev/bindings-ts/daml-react <app-dev/bindings-ts/daml-react>
+    app-dev/bindings-ts/daml-types <app-dev/bindings-ts/daml-types>
+    app-dev/bindings-ts/daml-ledger <app-dev/bindings-ts/daml-ledger>
+    app-dev/bindings-ts/daml2js <app-dev/bindings-ts/daml2js>
+    app-dev/parties-users <app-dev/parties-users>
+    app-dev/grpc/index <app-dev/grpc/index>
+    app-dev/grpc/error-codes <app-dev/grpc/error-codes>
+    app-dev/grpc/daml-to-ledger-api <app-dev/grpc/daml-to-ledger-api>
+    app-dev/services <app-dev/services>
+    app-dev/bindings-x-lang/index <app-dev/bindings-x-lang/index>
+    app-dev/daml-lf-translation <app-dev/daml-lf-translation>
+    app-dev/bindings-python <app-dev/bindings-python>
+    app-dev/command-deduplication <app-dev/command-deduplication>
+    app-dev/ledger-api <app-dev/ledger-api>
+    app-dev/authorization <app-dev/authorization>
+    app-dev/bindings-java/index <app-dev/bindings-java/index>
+    app-dev/bindings-java/codegen <app-dev/bindings-java/codegen>
+    app-dev/bindings-java/quickstart <app-dev/bindings-java/quickstart>
+    app-dev/bindings-java/example <app-dev/bindings-java/example>
+    json-api/index <json-api/index>
+    json-api/lf-value-specification <json-api/lf-value-specification>
+    json-api/search-query-language <json-api/search-query-language>
+    json-api/production-setup/security-and-privacy <json-api/production-setup/security-and-privacy>
+    json-api/production-setup/scaling-and-redundancy <json-api/production-setup/scaling-and-redundancy>
+    json-api/production-setup/metrics <json-api/production-setup/metrics>
+    json-api/production-setup/query-store <json-api/production-setup/query-store>
+    json-api/production-setup/logging <json-api/production-setup/logging>
+    json-api/production-setup/architecture <json-api/production-setup/architecture>
+    json-api/production-setup <json-api/production-setup>
+    upgrade/index <upgrade/index>
+    upgrade/extend <upgrade/extend>
+    upgrade/upgrade <upgrade/upgrade>
+    upgrade/automation <upgrade/automation>
+    tools/auth-middleware/index <tools/auth-middleware/index>
+    tools/auth-middleware/oauth2 <tools/auth-middleware/oauth2>
+    tools/canton-console <tools/canton-console>
+    tools/trigger-service/index <tools/trigger-service/index>
+    tools/trigger-service/auth0_example <tools/trigger-service/auth0_example>
+    tools/trigger-service/authorization <tools/trigger-service/authorization>
+    tools/assistant <tools/assistant>
+    tools/codegen <tools/codegen>
+    tools/non-repudiation <tools/non-repudiation>
+    tools/visual <tools/visual>
+    tools/navigator/index <tools/navigator/index>
+    tools/sandbox <tools/sandbox>
+    tools/profiler <tools/profiler>
+    tools/export/index <tools/export/index>
+    daml-off-ledger <daml-off-ledger>
+    triggers/index <triggers/index>
+    deploy/generic_ledger <deploy/generic_ledger>
+    operating-daml <operating-daml>
+    writing-daml <writing-daml>
+    tools <tools>
+    daml-repl/index <daml-repl/index>
+    daml/considerations <daml/considerations>
+    daml/daml-studio <daml/daml-studio>
+    daml/patterns/locking <daml/patterns/locking>
+    daml/patterns/initaccept <daml/patterns/initaccept>
+    daml/patterns/multiparty-agreement <daml/patterns/multiparty-agreement>
+    daml/patterns/locking/locking-by-safekeeping <daml/patterns/locking/locking-by-safekeeping>
+    daml/patterns/locking/locking-by-state <daml/patterns/locking/locking-by-state>
+    daml/patterns/locking/locking-by-archiving <daml/patterns/locking/locking-by-archiving>
+    daml/patterns/legends <daml/patterns/legends>
+    daml/patterns/delegation <daml/patterns/delegation>
+    daml/patterns/authorization <daml/patterns/authorization>
+    daml/intro/3_Data <daml/intro/3_Data>
+    daml/intro/8_Exceptions <daml/intro/8_Exceptions>
+    daml/intro/12_Testing <daml/intro/12_Testing>
+    daml/intro/5_Restrictions <daml/intro/5_Restrictions>
+    daml/intro/6_Parties <daml/intro/6_Parties>
+    daml/intro/99_NextSteps <daml/intro/99_NextSteps>
+    daml/intro/2_DamlScript <daml/intro/2_DamlScript>
+    daml/intro/10_Functional101 <daml/intro/10_Functional101>
+    daml/intro/1_Token <daml/intro/1_Token>
+    daml/intro/0_Intro <daml/intro/0_Intro>
+    daml/intro/4_Transformations <daml/intro/4_Transformations>
+    daml/intro/7_Composing <daml/intro/7_Composing>
+    daml/intro/9_Dependencies <daml/intro/9_Dependencies>
+    daml/intro/11_StdLib <daml/intro/11_StdLib>
+    daml/patterns <daml/patterns>
+    daml/troubleshooting <daml/troubleshooting>
+    daml/reference/templates <daml/reference/templates>
+    daml/reference/index <daml/reference/index>
+    daml/reference/working-with <daml/reference/working-with>
+    daml/reference/functions <daml/reference/functions>
+    daml/reference/data-types <daml/reference/data-types>
+    daml/reference/choices <daml/reference/choices>
+    daml/reference/packages <daml/reference/packages>
+    daml/reference/expressions <daml/reference/expressions>
+    daml/reference/structure <daml/reference/structure>
+    daml/reference/contract-keys <daml/reference/contract-keys>
+    daml/reference/file-structure <daml/reference/file-structure>
+    daml/reference/updates <daml/reference/updates>
+    daml/reference/exceptions <daml/reference/exceptions>
+    daml/reference/interfaces <daml/reference/interfaces>
+    getting-started/index <getting-started/index>
+    getting-started/testing <getting-started/testing>
+    getting-started/path-variables <getting-started/path-variables>
+    getting-started/manual-download <getting-started/manual-download>
+    getting-started/app-architecture <getting-started/app-architecture>
+    getting-started/first-feature <getting-started/first-feature>
+    getting-started/installation <getting-started/installation>
+    support/support <support/support>
+    support/status-definitions <support/status-definitions>
+    support/overview <support/overview>
+    support/releases <support/releases>
+    support/compatibility <support/compatibility>
+    support/component-statuses <support/component-statuses>
+    concepts/time <concepts/time>
+    concepts/ledger-model/index <concepts/ledger-model/index>
+    concepts/ledger-model/ledger-privacy <concepts/ledger-model/ledger-privacy>
+    concepts/ledger-model/ledger-structure <concepts/ledger-model/ledger-structure>
+    concepts/ledger-model/ledger-integrity <concepts/ledger-model/ledger-integrity>
+    concepts/ledger-model/ledger-daml <concepts/ledger-model/ledger-daml>
+    concepts/ledger-model/ledger-exceptions <concepts/ledger-model/ledger-exceptions>
+    concepts/interoperability <concepts/interoperability>
+    concepts/test-evidence <concepts/test-evidence>
+    concepts/identity-and-package-management <concepts/identity-and-package-management>
+    concepts/glossary <concepts/glossary>
+    concepts/local-ledger <concepts/local-ledger>
+    ops/system_architecture_faq <ops/system_architecture_faq>
+    ops/requirements <ops/requirements>
+    ops/pruning <ops/pruning>
+    ops/metering <ops/metering>
+    daml-script/index <daml-script/index>
+    building-applications <building-applications>
+    high-level-intro <high-level-intro>
+
+Canton References
+-----------------
+
+.. toctree::
+   canton-refs
