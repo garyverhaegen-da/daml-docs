@@ -1,0 +1,958 @@
+<!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Managing Latency and Throughput &mdash; Daml SDK 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/clipboard.min.js"></script>
+  <script src="../../_static/copybutton.js"></script>
+  
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Resource Management in Daml Application Design" href="index.html" />
+  <link rel="prev" title="Troubleshooting" href="../troubleshooting.html" /> 
+
+  
+  <link rel="icon" type="image/svg+xml"  href="../../_static/images/daml-logo-mark-light.svg">
+  <link rel="alternate icon" href="../../_static/images/daml-favicon-1.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSWJMNX');</script>
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSWJMNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-nav-side-shadow"></div>
+      <div class="wy-side-scroll">
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+          
+          
+          
+          
+          
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Daml Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/app-arch.html"> app-dev/app-arch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/index.html"> app-dev/bindings-ts/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html"> app-dev/bindings-ts/daml-react</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html"> app-dev/bindings-ts/daml-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html"> app-dev/bindings-ts/daml-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html"> app-dev/bindings-ts/daml2js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/parties-users.html"> app-dev/parties-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/index.html"> app-dev/grpc/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/error-codes.html"> app-dev/grpc/error-codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html"> app-dev/grpc/proto-docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html"> app-dev/grpc/daml-to-ledger-api</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/services.html"> app-dev/services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html"> app-dev/bindings-x-lang/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/daml-lf-translation.html"> app-dev/daml-lf-translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-python.html"> app-dev/bindings-python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/command-deduplication.html"> app-dev/command-deduplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/ledger-api.html"> app-dev/ledger-api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/custom-views/index.html"> app-dev/custom-views/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/authorization.html"> app-dev/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/index.html"> app-dev/bindings-java/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html"> app-dev/bindings-java/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html"> app-dev/bindings-java/quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/example.html"> app-dev/bindings-java/example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/index.html"> json-api/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/lf-value-specification.html"> json-api/lf-value-specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/search-query-language.html"> json-api/search-query-language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/security-and-privacy.html"> json-api/production-setup/security-and-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/scaling-and-redundancy.html"> json-api/production-setup/scaling-and-redundancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/metrics.html"> json-api/production-setup/metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/query-store.html"> json-api/production-setup/query-store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/logging.html"> json-api/production-setup/logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/architecture.html"> json-api/production-setup/architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup.html"> json-api/production-setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/index.html"> upgrade/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/extend.html"> upgrade/extend</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/upgrade.html"> upgrade/upgrade</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/automation.html"> upgrade/automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/index.html"> tools/auth-middleware/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html"> tools/auth-middleware/oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/canton-console.html"> tools/canton-console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/index.html"> tools/trigger-service/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html"> tools/trigger-service/auth0_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/authorization.html"> tools/trigger-service/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/assistant.html"> tools/assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/codegen.html"> tools/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/non-repudiation.html"> tools/non-repudiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/visual.html"> tools/visual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/navigator/index.html"> tools/navigator/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/sandbox.html"> tools/sandbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/profiler.html"> tools/profiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/export/index.html"> tools/export/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-off-ledger.html"> daml-off-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/index.html"> triggers/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/index.html"> triggers/api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html"> triggers/api/Daml-Trigger-LowLevel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html"> triggers/api/Daml-Trigger-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html"> triggers/api/Daml-Trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/generic_ledger.html"> deploy/generic_ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-repl/index.html"> daml-repl/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../considerations.html"> daml/considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../daml-studio.html"> daml/daml-studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking.html"> daml/patterns/locking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/initaccept.html"> daml/patterns/initaccept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/multiparty-agreement.html"> daml/patterns/multiparty-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html"> daml/patterns/locking/locking-by-safekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-state.html"> daml/patterns/locking/locking-by-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html"> daml/patterns/locking/locking-by-archiving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/legends.html"> daml/patterns/legends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/delegation.html"> daml/patterns/delegation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns/authorization.html"> daml/patterns/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/3_Data.html"> daml/intro/3_Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/8_Exceptions.html"> daml/intro/8_Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/12_Testing.html"> daml/intro/12_Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/5_Restrictions.html"> daml/intro/5_Restrictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/6_Parties.html"> daml/intro/6_Parties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/99_NextSteps.html"> daml/intro/99_NextSteps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/2_DamlScript.html"> daml/intro/2_DamlScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/10_Functional101.html"> daml/intro/10_Functional101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/1_Token.html"> daml/intro/1_Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/0_Intro.html"> daml/intro/0_Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/13_Interfaces.html"> daml/intro/13_Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/4_Transformations.html"> daml/intro/4_Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/7_Composing.html"> daml/intro/7_Composing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/9_Dependencies.html"> daml/intro/9_Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/11_StdLib.html"> daml/intro/11_StdLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../patterns.html"> daml/patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Numeric.html"> daml/stdlib/DA-Numeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/index.html"> daml/stdlib/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/Prelude.html">Prelude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Action.html">DA.Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Action-State.html">DA.Action.State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Action-State-Class.html">DA.Action.State.Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Assert.html">DA.Assert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Bifunctor.html">DA.Bifunctor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-BigNumeric.html">DA.BigNumeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Date.html">DA.Date</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Either.html">DA.Either</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Exception.html">DA.Exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Foldable.html">DA.Foldable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Functor.html">DA.Functor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Internal-Interface-AnyView.html">DA.Internal.Interface.AnyView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Internal-Interface-AnyView-Types.html">DA.Internal.Interface.AnyView.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-List.html">DA.List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-List-BuiltinOrder.html">DA.List.BuiltinOrder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-List-Total.html">DA.List.Total</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Logic.html">DA.Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Map.html">DA.Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Math.html">DA.Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Monoid.html">DA.Monoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-NonEmpty.html">DA.NonEmpty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-NonEmpty-Types.html">DA.NonEmpty.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Numeric.html">DA.Numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Optional.html">DA.Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Record.html">DA.Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Semigroup.html">DA.Semigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Set.html">DA.Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Stack.html">DA.Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Text.html">DA.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-TextMap.html">DA.TextMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Time.html">DA.Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Traversable.html">DA.Traversable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Tuple.html">DA.Tuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/DA-Validation.html">DA.Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/GHC-Show-Text.html">GHC.Show.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stdlib/GHC-Tuple-Check.html">GHC.Tuple.Check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Internal-Interface-AnyView.html"> daml/stdlib/DA-Internal-Interface-AnyView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Action.html"> daml/stdlib/DA-Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Monoid.html"> daml/stdlib/DA-Monoid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Foldable.html"> daml/stdlib/DA-Foldable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-TextMap.html"> daml/stdlib/DA-TextMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Tuple.html"> daml/stdlib/DA-Tuple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Record.html"> daml/stdlib/DA-Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Internal-Interface-AnyView-Types.html"> daml/stdlib/DA-Internal-Interface-AnyView-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-List.html"> daml/stdlib/DA-List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-List-Total.html"> daml/stdlib/DA-List-Total</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Either.html"> daml/stdlib/DA-Either</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Traversable.html"> daml/stdlib/DA-Traversable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Optional.html"> daml/stdlib/DA-Optional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Map.html"> daml/stdlib/DA-Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-NonEmpty-Types.html"> daml/stdlib/DA-NonEmpty-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Time.html"> daml/stdlib/DA-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Bifunctor.html"> daml/stdlib/DA-Bifunctor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/Prelude.html"> daml/stdlib/Prelude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Set.html"> daml/stdlib/DA-Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Semigroup.html"> daml/stdlib/DA-Semigroup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Assert.html"> daml/stdlib/DA-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Functor.html"> daml/stdlib/DA-Functor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Text.html"> daml/stdlib/DA-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Logic.html"> daml/stdlib/DA-Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/GHC-Show-Text.html"> daml/stdlib/GHC-Show-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Date.html"> daml/stdlib/DA-Date</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Action-State-Class.html"> daml/stdlib/DA-Action-State-Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-NonEmpty.html"> daml/stdlib/DA-NonEmpty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Math.html"> daml/stdlib/DA-Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-List-BuiltinOrder.html"> daml/stdlib/DA-List-BuiltinOrder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Stack.html"> daml/stdlib/DA-Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Action-State.html"> daml/stdlib/DA-Action-State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Validation.html"> daml/stdlib/DA-Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-BigNumeric.html"> daml/stdlib/DA-BigNumeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/GHC-Tuple-Check.html"> daml/stdlib/GHC-Tuple-Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../stdlib/DA-Exception.html"> daml/stdlib/DA-Exception</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting.html"> daml/troubleshooting</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> daml/resource-management/latency-and-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html"> daml/resource-management/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="active-contract-set.html"> daml/resource-management/active-contract-set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/templates.html"> daml/reference/templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html"> daml/reference/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/choices.html">Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/updates.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/data-types.html">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/working-with.html">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/expressions.html">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/file-structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/contract-keys.html">Contract keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/interfaces.html">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/working-with.html"> daml/reference/working-with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/functions.html"> daml/reference/functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/data-types.html"> daml/reference/data-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/choices.html"> daml/reference/choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/packages.html"> daml/reference/packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/expressions.html"> daml/reference/expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/structure.html"> daml/reference/structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/contract-keys.html"> daml/reference/contract-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/file-structure.html"> daml/reference/file-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/updates.html"> daml/reference/updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/exceptions.html"> daml/reference/exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/interfaces.html"> daml/reference/interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html"> getting-started/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing.html"> getting-started/testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/path-variables.html"> getting-started/path-variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/manual-download.html"> getting-started/manual-download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/app-architecture.html"> getting-started/app-architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-feature.html"> getting-started/first-feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation.html"> getting-started/installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/support.html"> support/support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/status-definitions.html"> support/status-definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/overview.html"> support/overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../support/status-definitions.html">Status Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../support/component-statuses.html">Feature and Component Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/releases.html"> support/releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/compatibility.html"> support/compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/component-statuses.html"> support/component-statuses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/time.html"> concepts/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/index.html"> concepts/ledger-model/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html">Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html">Privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html">Daml: Define Contract Models Compactly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html"> concepts/ledger-model/ledger-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html"> concepts/ledger-model/ledger-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html"> concepts/ledger-model/ledger-integrity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html"> concepts/ledger-model/ledger-daml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html"> concepts/ledger-model/ledger-exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/interoperability.html"> concepts/interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/test-evidence.html"> concepts/test-evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/identity-and-package-management.html"> concepts/identity-and-package-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/glossary.html"> concepts/glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/local-ledger.html"> concepts/local-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/system_architecture_faq.html"> ops/system_architecture_faq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/requirements.html"> ops/requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/pruning.html"> ops/pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/common-metrics.html"> ops/common-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/metering.html"> ops/metering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/index.html"> daml-script/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/index.html"> daml-script/api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/Daml-Script.html"> daml-script/api/Daml-Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building-applications.html"> building-applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/app-arch.html">Daml Application Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/index.html">Using JavaScript Client Libraries with Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/index.html">HTTP JSON API Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/index.html">Java Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-python.html">Python Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/index.html">Daml Script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-repl/index.html">Daml REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/index.html">Upgrading and Extending Daml Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/ledger-api.html">The Ledger API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/command-deduplication.html">Command Deduplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/index.html">Daml Triggers - Off-Ledger Automation in Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/index.html">Trigger Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/index.html">Auth Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../high-level-intro.html"> high-level-intro</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html">Dummy Canton Refs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html#dummy-toc-refs">Dummy TOC Refs</a></li>
+</ul>
+
+          
+          
+          
+          <div class="pdf-download"><a href="../../_downloads/DigitalAssetSDK.pdf" download>Download as PDF</a></div>
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="topbar fixed">
+        
+        <nav class="wy-nav-top" aria-label="top navigation">
+          
+          <i data-toggle="wy-nav-top" class="wy-nav-top-toggle"></i>
+          
+        </nav>
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="navbar">
+    <h1><img src="../../_static/images/Daml_Logo_Blue.svg"></h1>
+    <div class="navbar-menu">
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/developers" role="menuitem" class="da-menu-link">Developers</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/products" role="menuitem" class="da-menu-link">Products</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com" role="menuitem" class="da-menu-link">Company</a>
+        </div>
+    </div>
+</div>
+
+        <div class="version ">
+          <span class="hide-mobile">Version&nbsp;</span><span class="version_switcher_placeholder"></span>
+          
+        </div>
+
+
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<div class="search-inline">
+    <div id="rtd-search-inline-form" class="wy-form">
+        <input type="text" class="search-inline-input" placeholder="Search" name="q">
+        <img src="../../_static/images/Search.svg" class="search-inline-img"/>
+    </div>
+    <div class="search-alert">
+        Please enter at least 3 letters.
+    </div>
+    <div id="search-inline-results" class="search-inline-results">
+        
+    </div>
+</div>
+          <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="content-menu collapsed">
+    <span class="content-menu-title">In This Section</span>
+    <span class="content-menu-expand"></span>
+    <div class="content-menu-wrapper">
+        
+        <!-- Local TOC -->
+        <div class="content-menu-toc"><ul>
+<li><a class="reference internal" href="#">Managing Latency and Throughput</a><ul>
+<li><a class="reference internal" href="#problem-definition">Problem Definition</a><ul>
+<li><a class="reference internal" href="#possible-throughput-bottlenecks-in-order-of-likelihood">Possible Throughput Bottlenecks in Order of Likelihood</a></li>
+<li><a class="reference internal" href="#solutions">Solutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        
+    </div>
+</div>
+        
+
+      </div>
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+                
+  <div class="section" id="managing-latency-and-throughput">
+<h1>Managing Latency and Throughput<a class="headerlink" href="#managing-latency-and-throughput" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="problem-definition">
+<h2>Problem Definition<a class="headerlink" href="#problem-definition" title="Permalink to this heading">¶</a></h2>
+<p>Latency is a measure of how long a business transaction takes to complete. Throughput measures, on average, the number of business transactions possible per second while taking into account any lower or upper bounds which may point to bottlenecks. Defense against latency and throughput issues can be written into the Daml application during design.</p>
+<p>First we need to identify the potential bottlenecks in a Daml application. We can do this by analyzing the domain-specific transactions.</p>
+<p>Each Daml business transaction kicks off when a Ledger API client sends the commands <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">exercise</span></code> to a participant.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ul class="last simple">
+<li>Ledger transactions are not synonymous with business transactions.</li>
+<li>Often a complete business transaction spans multiple workflow steps and thus multiple ledger transactions.</li>
+<li>Multiple business transactions can be processed in a single ledger transaction through batching.</li>
+<li>Expected ledger transaction latencies are on the order of 0.5-1 seconds on database sequencers, and multiple seconds on blockchain sequencers.</li>
+</ul>
+</div>
+<p>Refer to the <a class="reference external" href="../intro/7_Composing.html#daml-s-execution-model">Daml execution model</a>  that describes a ledger transaction processed by the Canton ledger. The table below highlights potential resource-intensive activities at each step.</p>
+<table border="1" class="docutils align-default">
+<colgroup>
+<col width="10%" />
+<col width="25%" />
+<col width="35%" />
+<col width="30%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Step</th>
+<th class="head">Participant</th>
+<th class="head">Resources used</th>
+<th class="head">Possible bottleneck drivers</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Interpretation</td>
+<td><ul class="first last simple">
+<li>Submitting participant node</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>CPU</li>
+<li>Memory</li>
+<li>DB read access</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple">
+<li>Calculation complexity</li>
+<li>Size and number of variables</li>
+<li>Number of contract fetches</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td>Blinding</td>
+<td><ul class="first last simple">
+<li>Submitting participant node</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>CPU/memory</li>
+</ul>
+</td>
+<td><ul class="first last simple">
+<li>Number and size of views</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Submission</td>
+<td><ul class="first last simple">
+<li>Submitting participant node</li>
+<li>Sequencer</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>CPU</li>
+<li>Memory</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple">
+<li>Serialization/deserialization</li>
+<li>Transaction size/number of views</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td>Sequencing</td>
+<td><ul class="first last simple">
+<li>Sequencer</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>Backend storage</li>
+<li>Network bandwidth</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple">
+<li>Transaction size</li>
+<li>Transaction size/number of views</li>
+</ol>
+</td>
+</tr>
+<tr class="row-even"><td>Validation</td>
+<td><ul class="first last simple">
+<li>Receiving participant nodes</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>Network bandwidth</li>
+<li>CPU</li>
+<li>Memory</li>
+<li>DB read throughput</li>
+</ol>
+</td>
+<td><ol class="first last arabic simple">
+<li>Transaction size -&gt; download, deserialization, storage costs</li>
+<li>Computation complexity</li>
+<li>Number of contract fetch reads</li>
+<li>Number and size of variables</li>
+</ol>
+</td>
+</tr>
+<tr class="row-odd"><td>Confirmation</td>
+<td><ul class="first last simple">
+<li>Validating participant nodes</li>
+<li>Sequencer</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>Network bandwidth</li>
+<li>Sequencer network</li>
+<li>Backend write throughput</li>
+</ol>
+</td>
+<td><ul class="first last simple">
+<li>Number of confirming parties</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>Mediation</td>
+<td><ul class="first last simple">
+<li>Mediator nodes</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>Network throughput</li>
+<li>CPU</li>
+<li>Memory</li>
+</ol>
+</td>
+<td><ul class="first last simple">
+<li>Number of confirming parties</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>Commit</td>
+<td><ul class="first last simple">
+<li>Mediator nodes</li>
+<li>Sequencer</li>
+</ul>
+</td>
+<td><ol class="first last arabic simple">
+<li>CPU</li>
+<li>Memory</li>
+<li>DB</li>
+<li>Network bandwidth</li>
+</ol>
+</td>
+<td><ul class="first last simple">
+<li>Number of confirming parties</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="possible-throughput-bottlenecks-in-order-of-likelihood">
+<h3>Possible Throughput Bottlenecks in Order of Likelihood<a class="headerlink" href="#possible-throughput-bottlenecks-in-order-of-likelihood" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li>Transaction size causing high serialization/deserialization and encryption/decryption costs on participant nodes.</li>
+<li>Transaction size causing sequencer backend overload, especially on blockchains.</li>
+<li>High interpretation and validation cost due to calculation complexity or memory use.</li>
+<li>Large number of involved nodes and associated network bandwidth on sequencer.</li>
+</ol>
+<p>Latency can also be affected by the above factors. However, baseline latency usually has more to do with system set-up issues (DB or blockchain latency) rather than Daml modeling problems.</p>
+</div>
+<div class="section" id="solutions">
+<h3>Solutions<a class="headerlink" href="#solutions" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><strong>Minimize transaction size.</strong></li>
+</ol>
+<p>Each of the following actions in Daml adds a node to the transaction containing the payload of the contract being acted on. A large number of such operations, and/or operations of this kind on large contracts, are the most common cause of performance bottlenecks.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">create</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">fetch</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">fetchByKey</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">lookupByKey</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">exercise</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">exerciseByKey</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">archive</span></code></li>
+</ul>
+</div></blockquote>
+<p>Use the above actions sparingly. For example, if contracts have intermediary states within a transaction, you can often skip them by writing only the end state. For example:</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">template</span><span class="w"> </span><span class="kt">Incrementor</span><span class="w"></span>
+<span class="kr">with</span><span class="w"></span>
+<span class="nf">p</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Party</span><span class="w"></span>
+<span class="nf">n</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+<span class="kr">where</span><span class="w"></span>
+<span class="kr">signatory</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+
+<span class="kr">choice</span><span class="w"> </span><span class="kt">Increment</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Incrementor</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="kr">this</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="w"></span>
+
+<span class="c1">-- This adds all m-1 intermediary versions of</span><span class="w"></span>
+<span class="c1">-- the contract to the transaction tree</span><span class="w"></span>
+<span class="kr">choice</span><span class="w"> </span><span class="kt">BadIncrementMany</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Incrementor</span><span class="w"></span>
+<span class="w">    </span><span class="kr">with</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"> </span><span class="n">foldlA</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="n">self&#39;</span><span class="w"> </span><span class="kr">_</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="n">exercise</span><span class="w"> </span><span class="n">self&#39;</span><span class="w"> </span><span class="kt">Increment</span><span class="p">)</span><span class="w"> </span><span class="n">self</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="n">m</span><span class="p">]</span><span class="w"></span>
+
+<span class="c1">-- This only adds the end result to the transaction</span><span class="w"></span>
+<span class="kr">choice</span><span class="w"> </span><span class="kt">GoodIncrementMany</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Incrementor</span><span class="w"></span>
+<span class="w">    </span><span class="kr">with</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="kr">this</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When you need to read a contract, or act on a single contract in multiple ways, you can often bundle those operations into a single action. For example:</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="kr">template</span><span class="w"> </span><span class="kt">Asset</span><span class="w"></span>
+<span class="kr">with</span><span class="w"></span>
+<span class="w">  </span><span class="n">issuer</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Party</span><span class="w"></span>
+<span class="w">  </span><span class="n">owner</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Party</span><span class="w"></span>
+<span class="w">  </span><span class="n">quantity</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Decimal</span><span class="w"></span>
+<span class="kr">where</span><span class="w"></span>
+<span class="w">  </span><span class="kr">signatory</span><span class="w"> </span><span class="p">[</span><span class="n">issuer</span><span class="p">,</span><span class="w"> </span><span class="n">owner</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- BadMerge acts on each of the otherCids three times:</span><span class="w"></span>
+<span class="w">  </span><span class="c1">-- Once for validation</span><span class="w"></span>
+<span class="w">  </span><span class="c1">-- Once to extract the quantities</span><span class="w"></span>
+<span class="w">  </span><span class="c1">-- Once to archive</span><span class="w"></span>
+<span class="w">  </span><span class="kr">choice</span><span class="w"> </span><span class="kt">BadMerge</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Asset</span><span class="w"></span>
+<span class="w">    </span><span class="kr">with</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="p">[</span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Asset</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">owner</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"></span>
+<span class="w">      </span><span class="c1">-- validate the cids.</span><span class="w"></span>
+<span class="w">      </span><span class="n">forA_</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="n">cid</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="w">        </span><span class="n">other</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="n">cid</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">issuer</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">issuer</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span><span class="o">.</span><span class="n">owner</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">owner</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">-- extract the quantities</span><span class="w"></span>
+<span class="w">      </span><span class="n">quantities</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">forA</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="n">cid</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="w">        </span><span class="n">other</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="n">cid</span><span class="w"></span>
+<span class="w">        </span><span class="kr">return</span><span class="w"> </span><span class="n">other</span><span class="o">.</span><span class="n">quantity</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">-- archive the others</span><span class="w"></span>
+<span class="w">      </span><span class="n">forA_</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="n">archive</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">create</span><span class="w"> </span><span class="kr">this</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="n">quantities</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- Allow us to do a fetch and an archive in one action</span><span class="w"></span>
+<span class="w">  </span><span class="kr">choice</span><span class="w"> </span><span class="kt">ConsumingFetch</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Asset</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">owner</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="kr">this</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">-- GoodMerge only acts on each of the other assets once.</span><span class="w"></span>
+<span class="w">  </span><span class="kr">choice</span><span class="w"> </span><span class="kt">GoodMerge</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Asset</span><span class="w"></span>
+<span class="w">    </span><span class="kr">with</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="p">[</span><span class="kt">ContractId</span><span class="w"> </span><span class="kt">Asset</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">owner</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"></span>
+<span class="w">      </span><span class="c1">-- Get and archive the others</span><span class="w"></span>
+<span class="w">      </span><span class="n">others</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">forA</span><span class="w"> </span><span class="n">otherCids</span><span class="w"> </span><span class="p">(`</span><span class="n">exercise</span><span class="p">`</span><span class="w"> </span><span class="kt">ConsumingFetch</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">-- validate</span><span class="w"></span>
+<span class="w">      </span><span class="n">forA_</span><span class="w"> </span><span class="n">others</span><span class="w"> </span><span class="p">(</span><span class="nf">\</span><span class="n">other</span><span class="w"> </span><span class="ow">-&gt;</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">issuer</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">issuer</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span><span class="o">.</span><span class="n">owner</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">owner</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">      </span><span class="c1">-- extract the quantities</span><span class="w"></span>
+<span class="w">      </span><span class="kr">let</span><span class="w"> </span><span class="n">quantities</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="p">(</span><span class="o">.</span><span class="n">quantity</span><span class="p">)</span><span class="w"> </span><span class="n">others</span><span class="w"></span>
+
+<span class="w">      </span><span class="n">create</span><span class="w"> </span><span class="kr">this</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="n">quantity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="n">quantities</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Separate templates for large payloads that change rarely and require minimum access from those for fields that change with almost every action. This optimizes resource consumption for multiple business transactions.</p>
+<p>This batching approach makes updates in one transaction submission rather than requiring separate transactions for each update. Note: this option can cause a small increase in latency and may increase the possibility of command failure but this can be avoided. For example:</p>
+<div class="highlight-daml notranslate"><div class="highlight"><pre><span></span><span class="kr">template</span><span class="w"> </span><span class="kt">T</span><span class="w"></span>
+<span class="kr">with</span><span class="w"></span>
+<span class="nf">p</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Party</span><span class="w"></span>
+<span class="kr">where</span><span class="w"></span>
+<span class="kr">signatory</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+
+<span class="kr">choice</span><span class="w"> </span><span class="kt">Foo</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="nb">()</span><span class="w"></span>
+<span class="w">    </span><span class="kr">controller</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">    </span><span class="kr">do</span><span class="w"> </span><span class="kr">return</span><span class="w"> </span><span class="nb">()</span><span class="w"></span>
+
+<span class="nf">batching</span><span class="w"> </span><span class="kt">:</span><span class="w"> </span><span class="kt">Script</span><span class="w"> </span><span class="nb">()</span><span class="w"></span>
+<span class="nf">batching</span><span class="w"> </span><span class="ow">=</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="nf">p</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">allocateParty</span><span class="w"> </span><span class="s">&quot;p&quot;</span><span class="w"></span>
+
+<span class="c1">-- without batching we have 10 ledger</span><span class="w"></span>
+<span class="c1">-- transactions.</span><span class="w"></span>
+<span class="nf">cid1</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+<span class="nf">cid2</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+<span class="nf">cid3</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+<span class="nf">cid4</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+<span class="nf">cid5</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">exerciseCmd</span><span class="w"> </span><span class="n">cid1</span><span class="w"> </span><span class="kt">Foo</span><span class="w"></span>
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">exerciseCmd</span><span class="w"> </span><span class="n">cid2</span><span class="w"> </span><span class="kt">Foo</span><span class="w"></span>
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">exerciseCmd</span><span class="w"> </span><span class="n">cid3</span><span class="w"> </span><span class="kt">Foo</span><span class="w"></span>
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">exerciseCmd</span><span class="w"> </span><span class="n">cid4</span><span class="w"> </span><span class="kt">Foo</span><span class="w"></span>
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"> </span><span class="n">exerciseCmd</span><span class="w"> </span><span class="n">cid5</span><span class="w"> </span><span class="kt">Foo</span><span class="w"></span>
+
+<span class="c1">-- With batching, there are only two ledger transactions.</span><span class="w"></span>
+<span class="nf">cids</span><span class="w"> </span><span class="ow">&lt;-</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="nf">replicateA</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="n">createCmd</span><span class="w"> </span><span class="kt">T</span><span class="w"> </span><span class="kr">with</span><span class="w"> </span><span class="o">..</span><span class="w"></span>
+<span class="nf">submit</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="kr">do</span><span class="w"></span>
+<span class="nf">forA_</span><span class="w"> </span><span class="n">cids</span><span class="w"> </span><span class="p">(`</span><span class="n">exerciseCmd</span><span class="p">`</span><span class="w"> </span><span class="kt">Foo</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>CPU and memory issues: Use the <a class="reference external" href="../tools/profiler.html">Daml profiler</a> to analyze Daml code execution.</li>
+<li>Once you feel interpretation is not the bottleneck, scale up your machine.</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Profile the JVM and monitor your databases to see where the bottlenecks occur.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+              
+            </div>
+            
+            
+              <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../troubleshooting.html" class="da-btn da-btn-label btn-prev" title="Troubleshooting" accesskey="p" rel="prev">Previous</a>
+      
+      
+        <a href="index.html" class="da-btn da-btn-label btn-next" title="Resource Management in Daml Application Design" accesskey="n" rel="next">Next</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. Any unauthorized use, duplication or distribution is strictly prohibited. &#34;Digital Asset&#34; and &#34;Daml&#34; are Registered in the U.S. Patent and Trademark Office.
+
+    </p>
+  </div> 
+
+</footer>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+  
+    
+  
+  <div id="inpageContent"></div>
+  
+
+</body>
+</html>

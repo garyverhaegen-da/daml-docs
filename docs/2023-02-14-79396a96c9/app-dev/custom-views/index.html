@@ -1,0 +1,996 @@
+<!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Custom Views &mdash; Daml SDK 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/clipboard.min.js"></script>
+  <script src="../../_static/copybutton.js"></script>
+  
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Authorization" href="../authorization.html" />
+  <link rel="prev" title="The Ledger API" href="../ledger-api.html" /> 
+
+  
+  <link rel="icon" type="image/svg+xml"  href="../../_static/images/daml-logo-mark-light.svg">
+  <link rel="alternate icon" href="../../_static/images/daml-favicon-1.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSWJMNX');</script>
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSWJMNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-nav-side-shadow"></div>
+      <div class="wy-side-scroll">
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+          
+          
+          
+          
+          
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Daml Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app-arch.html"> app-dev/app-arch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-ts/index.html"> app-dev/bindings-ts/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-ts/daml-react.html"> app-dev/bindings-ts/daml-react</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-ts/daml-types.html"> app-dev/bindings-ts/daml-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-ts/daml-ledger.html"> app-dev/bindings-ts/daml-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-ts/daml2js.html"> app-dev/bindings-ts/daml2js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parties-users.html"> app-dev/parties-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/index.html"> app-dev/grpc/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/error-codes.html"> app-dev/grpc/error-codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/proto-docs.html"> app-dev/grpc/proto-docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../grpc/daml-to-ledger-api.html"> app-dev/grpc/daml-to-ledger-api</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../services.html"> app-dev/services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-x-lang/index.html"> app-dev/bindings-x-lang/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../daml-lf-translation.html"> app-dev/daml-lf-translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-python.html"> app-dev/bindings-python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../command-deduplication.html"> app-dev/command-deduplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ledger-api.html"> app-dev/ledger-api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../services.html">The Ledger API Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> app-dev/custom-views/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../authorization.html"> app-dev/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-java/index.html"> app-dev/bindings-java/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-java/codegen.html"> app-dev/bindings-java/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-java/quickstart.html"> app-dev/bindings-java/quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bindings-java/example.html"> app-dev/bindings-java/example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/index.html"> json-api/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/lf-value-specification.html"> json-api/lf-value-specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/search-query-language.html"> json-api/search-query-language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/security-and-privacy.html"> json-api/production-setup/security-and-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/scaling-and-redundancy.html"> json-api/production-setup/scaling-and-redundancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/metrics.html"> json-api/production-setup/metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/query-store.html"> json-api/production-setup/query-store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/logging.html"> json-api/production-setup/logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/architecture.html"> json-api/production-setup/architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup.html"> json-api/production-setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/index.html"> upgrade/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/extend.html"> upgrade/extend</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/upgrade.html"> upgrade/upgrade</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/automation.html"> upgrade/automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/index.html"> tools/auth-middleware/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html"> tools/auth-middleware/oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/canton-console.html"> tools/canton-console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/index.html"> tools/trigger-service/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html"> tools/trigger-service/auth0_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/authorization.html"> tools/trigger-service/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/assistant.html"> tools/assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/codegen.html"> tools/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/non-repudiation.html"> tools/non-repudiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/visual.html"> tools/visual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/navigator/index.html"> tools/navigator/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/sandbox.html"> tools/sandbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/profiler.html"> tools/profiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/export/index.html"> tools/export/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-off-ledger.html"> daml-off-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/index.html"> triggers/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/index.html"> triggers/api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html"> triggers/api/Daml-Trigger-LowLevel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html"> triggers/api/Daml-Trigger-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html"> triggers/api/Daml-Trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/generic_ledger.html"> deploy/generic_ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-repl/index.html"> daml-repl/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/considerations.html"> daml/considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/daml-studio.html"> daml/daml-studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking.html"> daml/patterns/locking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/initaccept.html"> daml/patterns/initaccept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/multiparty-agreement.html"> daml/patterns/multiparty-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html"> daml/patterns/locking/locking-by-safekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html"> daml/patterns/locking/locking-by-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html"> daml/patterns/locking/locking-by-archiving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/legends.html"> daml/patterns/legends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/delegation.html"> daml/patterns/delegation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/authorization.html"> daml/patterns/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/3_Data.html"> daml/intro/3_Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/8_Exceptions.html"> daml/intro/8_Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/12_Testing.html"> daml/intro/12_Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/5_Restrictions.html"> daml/intro/5_Restrictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/6_Parties.html"> daml/intro/6_Parties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/99_NextSteps.html"> daml/intro/99_NextSteps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/2_DamlScript.html"> daml/intro/2_DamlScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/10_Functional101.html"> daml/intro/10_Functional101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/1_Token.html"> daml/intro/1_Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/0_Intro.html"> daml/intro/0_Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/13_Interfaces.html"> daml/intro/13_Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/4_Transformations.html"> daml/intro/4_Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/7_Composing.html"> daml/intro/7_Composing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/9_Dependencies.html"> daml/intro/9_Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/11_StdLib.html"> daml/intro/11_StdLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns.html"> daml/patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Numeric.html"> daml/stdlib/DA-Numeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/index.html"> daml/stdlib/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/Prelude.html">Prelude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action.html">DA.Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action-State.html">DA.Action.State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action-State-Class.html">DA.Action.State.Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Assert.html">DA.Assert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Bifunctor.html">DA.Bifunctor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-BigNumeric.html">DA.BigNumeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Date.html">DA.Date</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Either.html">DA.Either</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Exception.html">DA.Exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Foldable.html">DA.Foldable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Functor.html">DA.Functor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView.html">DA.Internal.Interface.AnyView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView-Types.html">DA.Internal.Interface.AnyView.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List.html">DA.List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List-BuiltinOrder.html">DA.List.BuiltinOrder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List-Total.html">DA.List.Total</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Logic.html">DA.Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Map.html">DA.Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Math.html">DA.Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Monoid.html">DA.Monoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty.html">DA.NonEmpty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty-Types.html">DA.NonEmpty.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Numeric.html">DA.Numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Optional.html">DA.Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Record.html">DA.Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Semigroup.html">DA.Semigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Set.html">DA.Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Stack.html">DA.Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Text.html">DA.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-TextMap.html">DA.TextMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Time.html">DA.Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Traversable.html">DA.Traversable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Tuple.html">DA.Tuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Validation.html">DA.Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/GHC-Show-Text.html">GHC.Show.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/GHC-Tuple-Check.html">GHC.Tuple.Check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView.html"> daml/stdlib/DA-Internal-Interface-AnyView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action.html"> daml/stdlib/DA-Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Monoid.html"> daml/stdlib/DA-Monoid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Foldable.html"> daml/stdlib/DA-Foldable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-TextMap.html"> daml/stdlib/DA-TextMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Tuple.html"> daml/stdlib/DA-Tuple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Record.html"> daml/stdlib/DA-Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView-Types.html"> daml/stdlib/DA-Internal-Interface-AnyView-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List.html"> daml/stdlib/DA-List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List-Total.html"> daml/stdlib/DA-List-Total</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Either.html"> daml/stdlib/DA-Either</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Traversable.html"> daml/stdlib/DA-Traversable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Optional.html"> daml/stdlib/DA-Optional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Map.html"> daml/stdlib/DA-Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty-Types.html"> daml/stdlib/DA-NonEmpty-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Time.html"> daml/stdlib/DA-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Bifunctor.html"> daml/stdlib/DA-Bifunctor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/Prelude.html"> daml/stdlib/Prelude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Set.html"> daml/stdlib/DA-Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Semigroup.html"> daml/stdlib/DA-Semigroup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Assert.html"> daml/stdlib/DA-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Functor.html"> daml/stdlib/DA-Functor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Text.html"> daml/stdlib/DA-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Logic.html"> daml/stdlib/DA-Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/GHC-Show-Text.html"> daml/stdlib/GHC-Show-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Date.html"> daml/stdlib/DA-Date</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action-State-Class.html"> daml/stdlib/DA-Action-State-Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty.html"> daml/stdlib/DA-NonEmpty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Math.html"> daml/stdlib/DA-Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List-BuiltinOrder.html"> daml/stdlib/DA-List-BuiltinOrder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Stack.html"> daml/stdlib/DA-Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action-State.html"> daml/stdlib/DA-Action-State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Validation.html"> daml/stdlib/DA-Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-BigNumeric.html"> daml/stdlib/DA-BigNumeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/GHC-Tuple-Check.html"> daml/stdlib/GHC-Tuple-Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Exception.html"> daml/stdlib/DA-Exception</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/troubleshooting.html"> daml/troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/latency-and-throughput.html"> daml/resource-management/latency-and-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/index.html"> daml/resource-management/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/active-contract-set.html"> daml/resource-management/active-contract-set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/templates.html"> daml/reference/templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/index.html"> daml/reference/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/choices.html">Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/updates.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/data-types.html">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/working-with.html">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/expressions.html">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/file-structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/contract-keys.html">Contract keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/interfaces.html">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/working-with.html"> daml/reference/working-with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/functions.html"> daml/reference/functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/data-types.html"> daml/reference/data-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/choices.html"> daml/reference/choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/packages.html"> daml/reference/packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/expressions.html"> daml/reference/expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/structure.html"> daml/reference/structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/contract-keys.html"> daml/reference/contract-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/file-structure.html"> daml/reference/file-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/updates.html"> daml/reference/updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/exceptions.html"> daml/reference/exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/interfaces.html"> daml/reference/interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html"> getting-started/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing.html"> getting-started/testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/path-variables.html"> getting-started/path-variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/manual-download.html"> getting-started/manual-download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/app-architecture.html"> getting-started/app-architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-feature.html"> getting-started/first-feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation.html"> getting-started/installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/support.html"> support/support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/status-definitions.html"> support/status-definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/overview.html"> support/overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../support/status-definitions.html">Status Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../support/component-statuses.html">Feature and Component Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/releases.html"> support/releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/compatibility.html"> support/compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/component-statuses.html"> support/component-statuses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/time.html"> concepts/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/index.html"> concepts/ledger-model/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html">Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html">Privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html">Daml: Define Contract Models Compactly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html"> concepts/ledger-model/ledger-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html"> concepts/ledger-model/ledger-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html"> concepts/ledger-model/ledger-integrity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html"> concepts/ledger-model/ledger-daml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html"> concepts/ledger-model/ledger-exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/interoperability.html"> concepts/interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/test-evidence.html"> concepts/test-evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/identity-and-package-management.html"> concepts/identity-and-package-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/glossary.html"> concepts/glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/local-ledger.html"> concepts/local-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/system_architecture_faq.html"> ops/system_architecture_faq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/requirements.html"> ops/requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/pruning.html"> ops/pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/common-metrics.html"> ops/common-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/metering.html"> ops/metering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/index.html"> daml-script/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/index.html"> daml-script/api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/Daml-Script.html"> daml-script/api/Daml-Script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building-applications.html"> building-applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../app-arch.html">Daml Application Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-ts/index.html">Using JavaScript Client Libraries with Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/index.html">HTTP JSON API Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-java/index.html">Java Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bindings-python.html">Python Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/index.html">Daml Script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-repl/index.html">Daml REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/index.html">Upgrading and Extending Daml Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ledger-api.html">The Ledger API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../services.html">The Ledger API Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../command-deduplication.html">Command Deduplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../triggers/index.html">Daml Triggers - Off-Ledger Automation in Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../triggers/api/index.html">Daml Trigger Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../triggers/api/Daml-Trigger-LowLevel.html">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/index.html">Trigger Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/index.html">Auth Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../high-level-intro.html"> high-level-intro</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html">Dummy Canton Refs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html#dummy-toc-refs">Dummy TOC Refs</a></li>
+</ul>
+
+          
+          
+          
+          <div class="pdf-download"><a href="../../_downloads/DigitalAssetSDK.pdf" download>Download as PDF</a></div>
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="topbar fixed">
+        
+        <nav class="wy-nav-top" aria-label="top navigation">
+          
+          <i data-toggle="wy-nav-top" class="wy-nav-top-toggle"></i>
+          
+        </nav>
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="navbar">
+    <h1><img src="../../_static/images/Daml_Logo_Blue.svg"></h1>
+    <div class="navbar-menu">
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/developers" role="menuitem" class="da-menu-link">Developers</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/products" role="menuitem" class="da-menu-link">Products</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com" role="menuitem" class="da-menu-link">Company</a>
+        </div>
+    </div>
+</div>
+
+        <div class="version ">
+          <span class="hide-mobile">Version&nbsp;</span><span class="version_switcher_placeholder"></span>
+          
+        </div>
+
+
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<div class="search-inline">
+    <div id="rtd-search-inline-form" class="wy-form">
+        <input type="text" class="search-inline-input" placeholder="Search" name="q">
+        <img src="../../_static/images/Search.svg" class="search-inline-img"/>
+    </div>
+    <div class="search-alert">
+        Please enter at least 3 letters.
+    </div>
+    <div id="search-inline-results" class="search-inline-results">
+        
+    </div>
+</div>
+          <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="content-menu collapsed">
+    <span class="content-menu-title">In This Section</span>
+    <span class="content-menu-expand"></span>
+    <div class="content-menu-wrapper">
+        
+        <!-- Local TOC -->
+        <div class="content-menu-toc"><ul>
+<li><a class="reference internal" href="#">Custom Views</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#projector">Projector</a><ul>
+<li><a class="reference internal" href="#batchsource">BatchSource</a><ul>
+<li><a class="reference internal" href="#batch">Batch</a></li>
+<li><a class="reference internal" href="#envelope">Envelope</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#projection">Projection</a></li>
+<li><a class="reference internal" href="#the-project-function">The Project function</a><ul>
+<li><a class="reference internal" href="#the-jdbcaction">The JdbcAction</a></li>
+<li><a class="reference internal" href="#projecting-rows-in-batches">Projecting rows in batches</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li><a class="reference internal" href="#database-migration-with-flyway">Database migration with Flyway</a></li>
+<li><a class="reference internal" href="#batcher-configuration">Batcher configuration</a></li>
+<li><a class="reference internal" href="#dispatcher-configuration-for-blocking-operation">Dispatcher configuration for blocking operation</a></li>
+<li><a class="reference internal" href="#ledger-api-authorization">Ledger API Authorization</a><ul>
+<li><a class="reference internal" href="#provide-access-token-to-custom-view-library">Provide access token to custom-view library</a></li>
+<li><a class="reference internal" href="#provide-a-newly-retrieved-access-token-when-the-existing-one-has-expired">Provide a newly retrieved access token when the existing one has expired</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        
+    </div>
+</div>
+        
+
+      </div>
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+                
+  <div class="section" id="custom-views">
+<span id="id1"></span><h1>Custom Views<a class="headerlink" href="#custom-views" title="Permalink to this heading">¶</a></h1>
+<p>The Custom Views library provides convenient features to continuously ingest data from a ledger into a database,
+into tables of your choice, optimized for your querying requirements.</p>
+<p>Custom Views is a Java library for <strong>projecting</strong> ledger events into a SQL database.
+It is currently available in <a class="reference internal" href="../../support/status-definitions.html"><span class="doc">Labs</span></a> early access, and only supports PostgreSQL right now.</p>
+<p>Use the following Maven dependency to use the Custom Views library:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.daml<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>custom-views_2.13<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.5.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+</div>
+<p>Please see the <a class="reference external" href="https://github.com/digital-asset/custom-views/">Custom Views github repository</a> for an example Maven project of a simple application
+that projects data into a SQL table and provides access to the data through a REST interface.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>A <strong>Projection</strong> is a resumable process that continuously reads ledger events and transforms these into rows in SQL tables.
+A projection ensures that rows are committed according to ledger transactions,
+ensuring that the isolation and atomicity of changes perceived by database users are consistent with committed transactions on the ledger.</p>
+<p>At a high level, the following types are needed to run a projection process:</p>
+<ul class="simple">
+<li>A <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> connects to the ledger and reads events from it.</li>
+<li>A <code class="docutils literal notranslate"><span class="pre">Projection</span></code> defines which events to process from the <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>, from which <code class="docutils literal notranslate"><span class="pre">Offset</span></code> to start processing, optionally up to an end <code class="docutils literal notranslate"><span class="pre">Offset</span></code>.</li>
+<li>A <code class="docutils literal notranslate"><span class="pre">Project</span></code> function converts the events into database actions. A <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code> type defines which SQL statements should be executed.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">project</span></code> method on <code class="docutils literal notranslate"><span class="pre">Projector</span></code> takes a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>, a <code class="docutils literal notranslate"><span class="pre">Projection</span></code>, and a <code class="docutils literal notranslate"><span class="pre">Project</span></code> function. The <code class="docutils literal notranslate"><span class="pre">project</span></code> method starts the projection process. Database transactions are committed as they occur on the ledger.</li>
+</ul>
+<p>A common workflow for setting up a projection process follows:</p>
+<ul class="simple">
+<li>Create a table in your SQL database.</li>
+<li>Create a <code class="docutils literal notranslate"><span class="pre">Projector</span></code>.</li>
+<li>Choose the type of event you want to project and create a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> for it.</li>
+<li>Create a <code class="docutils literal notranslate"><span class="pre">Projection</span></code>. If the projection already exists, it will continue where it left off.</li>
+<li>Create a <code class="docutils literal notranslate"><span class="pre">Project</span></code> function that transforms an event into (0 to N) database actions.</li>
+<li>Invoke <code class="docutils literal notranslate"><span class="pre">project</span></code> on the <code class="docutils literal notranslate"><span class="pre">Projector</span></code>, passing in the <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>, the <code class="docutils literal notranslate"><span class="pre">Projection</span></code>, and the <code class="docutils literal notranslate"><span class="pre">Project</span></code> function. This starts the projection process, and returns a <code class="docutils literal notranslate"><span class="pre">Control</span></code> to control the process.</li>
+<li>Cancel the projection by invoking <code class="docutils literal notranslate"><span class="pre">control.cancel</span></code> on shutdown of your application.</li>
+</ul>
+<p>The next sections explain the most important objects in the Custom Views library in more detail.</p>
+</div>
+<div class="section" id="projector">
+<h2>Projector<a class="headerlink" href="#projector" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">Projector</span></code> executes the projection process. The code snippet below shows how to create a <code class="docutils literal notranslate"><span class="pre">JdbcProjector</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HikariConfig</span><span class="p">();</span><span class="w"></span>
+<span class="n">config</span><span class="p">.</span><span class="na">setJdbcUrl</span><span class="p">(</span><span class="n">url</span><span class="p">);</span><span class="w"></span>
+<span class="n">config</span><span class="p">.</span><span class="na">setUsername</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w"></span>
+<span class="n">config</span><span class="p">.</span><span class="na">setPassword</span><span class="p">(</span><span class="n">password</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">ds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HikariDataSource</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ActorSystem</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;my-projection-app&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">projector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JdbcProjector</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Projector</span></code> provides <code class="docutils literal notranslate"><span class="pre">project</span></code> methods to start a projection process.
+A <cite>DataSource</cite> is used to create database connections when required. In this example a <a class="reference external" href="https://github.com/brettwooldridge/HikariCP">Hikari connection pool</a> is used.
+The <code class="docutils literal notranslate"><span class="pre">project</span></code> methods return a <code class="docutils literal notranslate"><span class="pre">Control</span></code> which can be used to:</p>
+<ul class="simple">
+<li>Cancel the projection.</li>
+<li>Find out if the projection has completed or failed.</li>
+<li>Wait for the projection process to close all its resources.</li>
+</ul>
+<p>A projection only completes if an end <code class="docutils literal notranslate"><span class="pre">Offset</span></code> is set, otherwise it continuously runs and projects events as they occur on the ledger.
+The <code class="docutils literal notranslate"><span class="pre">project</span></code> methods take a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>, a <code class="docutils literal notranslate"><span class="pre">Projection</span></code> and a <code class="docutils literal notranslate"><span class="pre">Project</span></code> function, which are explained in the next sections.</p>
+<div class="section" id="batchsource">
+<h3>BatchSource<a class="headerlink" href="#batchsource" title="Permalink to this heading">¶</a></h3>
+<p>A projection connects to the ledger and reads events using a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>, which internally uses <a class="reference internal" href="../grpc/index.html"><span class="doc">the Ledger API with gRPC</span></a>.
+The Ledger API provides the following types of events:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">Event</span></code> (<code class="docutils literal notranslate"><span class="pre">CreatedEvent</span></code> or <code class="docutils literal notranslate"><span class="pre">ArchivedEvent</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">ExercisedEvent</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">TreeEvent</span></code></li>
+</ul>
+<p>The projection library uses the <code class="docutils literal notranslate"><span class="pre">Event</span></code>, <code class="docutils literal notranslate"><span class="pre">ExercisedEvent</span></code> and <code class="docutils literal notranslate"><span class="pre">TreeEvent</span></code> classes from the <a class="reference internal" href="../bindings-java/index.html"><span class="doc">Java Bindings</span></a>
+in the <code class="docutils literal notranslate"><span class="pre">com.daml.ledger.javaapi.data</span></code> package to represent these events.</p>
+<p>The following <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>s are available:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">BatchSource.events</span></code> creates a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> that reads <code class="docutils literal notranslate"><span class="pre">Event</span></code>s from the ledger.</li>
+<li><code class="docutils literal notranslate"><span class="pre">BatchSource.exercisedEvents</span></code> creates a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> that reads <code class="docutils literal notranslate"><span class="pre">ExercisedEvent</span></code>s from the ledger.</li>
+<li><code class="docutils literal notranslate"><span class="pre">BatchSource.treeEvents</span></code> creates a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> that reads <code class="docutils literal notranslate"><span class="pre">TreeEvent</span></code>s from the ledger.</li>
+</ul>
+<p>The example below shows how to create a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> that reads <code class="docutils literal notranslate"><span class="pre">CreatedEvent</span></code>s and <code class="docutils literal notranslate"><span class="pre">ArchivedEvent</span></code>s from the ledger at <code class="docutils literal notranslate"><span class="pre">localhost</span></code>, port <code class="docutils literal notranslate"><span class="pre">6865</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">grpcClientSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GrpcClientSettings</span><span class="p">.</span><span class="na">connectToServiceAt</span><span class="p">(</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6865</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BatchSource</span><span class="p">.</span><span class="na">events</span><span class="p">(</span><span class="n">grpcClientSettings</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Additionally <code class="docutils literal notranslate"><span class="pre">BatchSource.create</span></code> creates a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> from code-generated <code class="docutils literal notranslate"><span class="pre">Contract</span></code> types from <code class="docutils literal notranslate"><span class="pre">CreateEvent</span></code>s,
+or creates a <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> from simple values, which is convenient for unit testing.</p>
+<div class="section" id="batch">
+<h4>Batch<a class="headerlink" href="#batch" title="Permalink to this heading">¶</a></h4>
+<p>A <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> reads events into <code class="docutils literal notranslate"><span class="pre">Batch</span></code>es. A <code class="docutils literal notranslate"><span class="pre">Batch</span></code> consists of 1 to many events, and optionally contains a marker that indicates that a transaction has been committed on the ledger.
+<cite>Batches</cite> make it possible to process larger than memory transactions, while tracking transactions as they occur on the ledger, and making it possible for downstream
+database transactions to only commit when these transaction markers have been detected.</p>
+</div>
+<div class="section" id="envelope">
+<h4>Envelope<a class="headerlink" href="#envelope" title="Permalink to this heading">¶</a></h4>
+<p>The events in <cite>Batches</cite> are wrapped in <cite>Envelopes</cite>. An <code class="docutils literal notranslate"><span class="pre">Envelope</span></code> provides additional fields providing more context about what occurred on the ledger.
+It has the following fields:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">event</span></code>: The wrapped value. <code class="docutils literal notranslate"><span class="pre">getEvent</span></code> and <code class="docutils literal notranslate"><span class="pre">unwrap()</span></code> both provide this value.</li>
+<li><code class="docutils literal notranslate"><span class="pre">offset</span></code>: The offset of the event.</li>
+<li><code class="docutils literal notranslate"><span class="pre">table</span></code>: The (main) <code class="docutils literal notranslate"><span class="pre">ProjectionTable</span></code> that is projected to.</li>
+<li><code class="docutils literal notranslate"><span class="pre">workflowId</span></code> (optional)</li>
+<li><code class="docutils literal notranslate"><span class="pre">ledgerEffectiveTime</span></code> (optional)</li>
+<li><code class="docutils literal notranslate"><span class="pre">transactionId</span></code> (optional)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="projection">
+<h3>Projection<a class="headerlink" href="#projection" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Projection</span></code> keeps track of the projection process and decides which events will be projected from the <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code>.</p>
+<p>A Projection:</p>
+<ul class="simple">
+<li>has a <cite>ProjectionId</cite> that must uniquely identify the projection process.</li>
+<li>has an <code class="docutils literal notranslate"><span class="pre">Offset</span></code> which is used as a starting point to read from the ledger.</li>
+<li>has a <code class="docutils literal notranslate"><span class="pre">ProjectionFilter</span></code>. The <code class="docutils literal notranslate"><span class="pre">BatchSource</span></code> uses this filter to select events from the ledger. (If you are familiar with the gRPC service, the <code class="docutils literal notranslate"><span class="pre">ProjectionFilter</span></code> translates to a <code class="docutils literal notranslate"><span class="pre">TransactionFilter</span></code>)</li>
+<li>specifies an SQL table to project to with a <code class="docutils literal notranslate"><span class="pre">ProjectionTable</span></code>.</li>
+<li>optionally has a <code class="docutils literal notranslate"><span class="pre">Predicate</span></code> to filter events that were read from the ledger.</li>
+<li>optionally has an end <code class="docutils literal notranslate"><span class="pre">Offset</span></code>, if set the projection ends when a transaction for the <code class="docutils literal notranslate"><span class="pre">Offset</span></code> has been read from the ledger.</li>
+<li>is stored in the <code class="docutils literal notranslate"><span class="pre">projection</span></code> SQL table.</li>
+</ul>
+<p>A newly created projection by default has no offset, which means a projection starts from the beginning of the ledger.
+A projection updates when it successfully commits transactions into the SQL database according to transactions that were committed on the ledger.
+A projection resumes from its stored offset automatically, if it can be found by its <cite>ProjectionId</cite>.</p>
+<p>The code below shows an example of how to create a <cite>Projection</cite>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">projectionTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProjectionTable</span><span class="p">(</span><span class="s">&quot;ious&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">eventsProjection</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">  </span><span class="n">Projection</span><span class="p">.</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="n">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">ProjectionId</span><span class="p">(</span><span class="s">&quot;iou-projection-for-party&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">ProjectionFilter</span><span class="p">.</span><span class="na">parties</span><span class="p">(</span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">partyId</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">eventsProjection</span></code> <code class="docutils literal notranslate"><span class="pre">Projection</span></code> selects <code class="docutils literal notranslate"><span class="pre">Event</span></code>s that occurred visible to the party <code class="docutils literal notranslate"><span class="pre">partyId</span></code> to the <code class="docutils literal notranslate"><span class="pre">ious</span></code> SQL table.</p>
+</div>
+<div class="section" id="the-project-function">
+<h3>The Project function<a class="headerlink" href="#the-project-function" title="Permalink to this heading">¶</a></h3>
+<p>The <cite>Project&lt;E,A&gt;</cite> function projects an event <cite>Envelope&lt;E&gt;</cite> into a <cite>List&lt;A&gt;</cite>.
+For the <code class="docutils literal notranslate"><span class="pre">project</span></code> methods on <code class="docutils literal notranslate"><span class="pre">JdbcProjector</span></code>, <cite>A</cite> is a <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code>.</p>
+<p>The code below shows an example of a <code class="docutils literal notranslate"><span class="pre">Project</span></code> function that handles <cite>CreatedEvents</cite> and <cite>ArchivedEvents</cite>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Project</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span><span class="w"> </span><span class="n">JdbcAction</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">  </span><span class="n">envelope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">envelope</span><span class="p">.</span><span class="na">getEvent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="k">instanceof</span><span class="w"> </span><span class="n">CreatedEvent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="w"> </span><span class="n">iou</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="p">.</span><span class="na">fromCreatedEvent</span><span class="p">((</span><span class="n">CreatedEvent</span><span class="p">)</span><span class="w"> </span><span class="n">event</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExecuteUpdate</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;insert into &quot;</span><span class="w"></span>
+<span class="w">          </span><span class="o">+</span><span class="w"> </span><span class="n">projectionTable</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"></span>
+<span class="w">          </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(contract_id, event_id, amount, currency) &quot;</span><span class="w"></span>
+<span class="w">          </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;values (?, ?, ?, ?)&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getContractId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">amount</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">BigDecimal</span><span class="p">())</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">currency</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">());</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">action</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">var</span><span class="w"> </span><span class="n">action</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="n">ExecuteUpdate</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot;delete from &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">          </span><span class="n">projectionTable</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">          </span><span class="s">&quot; where contract_id = ?&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getContractId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">());</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">action</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Project</span></code> function <cite>f</cite> creates an insert action for every <code class="docutils literal notranslate"><span class="pre">CreatedEvent</span></code> and a delete action for every <code class="docutils literal notranslate"><span class="pre">ArchivedEvent</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code>s are further explained in the next section.</p>
+<div class="section" id="the-jdbcaction">
+<h4>The JdbcAction<a class="headerlink" href="#the-jdbcaction" title="Permalink to this heading">¶</a></h4>
+<p>A database action captures a SQL statement that is executed by a <code class="docutils literal notranslate"><span class="pre">Projector</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code> is an interface with one method, shown in the example below:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">sql</span><span class="p">.</span><span class="na">Connection</span><span class="w"> </span><span class="n">con</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>All actions extend <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code>. <code class="docutils literal notranslate"><span class="pre">execute</span></code> should return the number of rows affected by the action.
+The <code class="docutils literal notranslate"><span class="pre">ExecuteUpdate</span></code> action creates an insert, delete, or update statement.
+The example below shows how an insert statement can be created, and how arguments can be bound to the statement:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ExecuteUpdate</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;insert into &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">projectionTable</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(contract_id, event_id, amount, currency) &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;values (?, ?, ?, ?)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getContractId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">amount</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">BigDecimal</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">currency</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+<p>It is also possible to use named parameters, which is shown in the example below:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ExecuteUpdate</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;insert into &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">projectionTable</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(contract_id, event_id, amount, currency) &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;values (:cid, :eid, :amount, :currency)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;cid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getContractId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;eid&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getEventId</span><span class="p">(),</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;amount&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">amount</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">BigDecimal</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;currency&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">currency</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">());</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="projecting-rows-in-batches">
+<h4>Projecting rows in batches<a class="headerlink" href="#projecting-rows-in-batches" title="Permalink to this heading">¶</a></h4>
+<p>The <cite>ExecuteUpdate</cite> action internally creates a new <code class="docutils literal notranslate"><span class="pre">java.sql.PreparedStatement</span></code> when it is executed.
+Use <cite>UpdateMany</cite> if you want to reuse the <code class="docutils literal notranslate"><span class="pre">java.sql.PreparedStatement</span></code> and add statements in batches, which can make a considerable difference to performance.
+The example below shows how you can use <code class="docutils literal notranslate"><span class="pre">projectRows</span></code> to project using <code class="docutils literal notranslate"><span class="pre">UpdateMany</span></code>.
+In this case we are using a code generated <code class="docutils literal notranslate"><span class="pre">Iou.Contract</span></code> class to function as a <cite>Row</cite>, which we use to bind to a SQL statement
+which is executed in batches.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">projectionTable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProjectionTable</span><span class="p">(</span><span class="s">&quot;ious&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">contracts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Projection</span><span class="p">.</span><span class="o">&lt;</span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="o">&gt;</span><span class="n">create</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">new</span><span class="w"> </span><span class="n">ProjectionId</span><span class="p">(</span><span class="s">&quot;iou-contracts-for-party&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">ProjectionFilter</span><span class="p">.</span><span class="na">parties</span><span class="p">(</span><span class="n">Set</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">partyId</span><span class="p">)),</span><span class="w"></span>
+<span class="w">  </span><span class="n">projectionTable</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">batchSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BatchSource</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">grpcClientSettings</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="p">.</span><span class="na">fromCreatedEvent</span><span class="p">(</span><span class="n">e</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="n">Project</span><span class="o">&lt;</span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="p">,</span><span class="w"> </span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="o">&gt;</span><span class="w"> </span><span class="n">mkRow</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">envelope</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">envelope</span><span class="p">.</span><span class="na">getEvent</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="n">Binder</span><span class="o">&lt;</span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="o">&gt;</span><span class="w"> </span><span class="n">binder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sql</span><span class="p">.</span><span class="o">&lt;</span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="o">&gt;</span><span class="n">binder</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;insert into &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="n">projectionTable</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(contract_id, event_id, amount, currency) &quot;</span><span class="w"></span>
+<span class="w">    </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;values (:contract_id, :event_id, :amount, :currency)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;contract_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">contractId</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;event_id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;amount&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">amount</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">BigDecimal</span><span class="p">())</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;currency&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iou</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">iou</span><span class="p">.</span><span class="na">data</span><span class="p">.</span><span class="na">currency</span><span class="p">,</span><span class="w"> </span><span class="n">Bind</span><span class="p">.</span><span class="na">String</span><span class="p">());</span><span class="w"></span>
+<span class="n">BatchRows</span><span class="o">&lt;</span><span class="n">Iou</span><span class="p">.</span><span class="na">Contract</span><span class="p">,</span><span class="w"> </span><span class="n">JdbcAction</span><span class="o">&gt;</span><span class="w"> </span><span class="n">batchRows</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">UpdateMany</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">binder</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">projector</span><span class="p">.</span><span class="na">projectRows</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">batchSource</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">contracts</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">batchRows</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">mkRow</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Project</span></code> function just returns the <code class="docutils literal notranslate"><span class="pre">Iou.Contract</span></code> since we can use this directly for our insert statement.
+Next we use a <code class="docutils literal notranslate"><span class="pre">Binder</span></code> to bind the <code class="docutils literal notranslate"><span class="pre">Iou.Contract</span></code> to the insert statement.
+The <code class="docutils literal notranslate"><span class="pre">UpdateMany.create</span></code> creates a <code class="docutils literal notranslate"><span class="pre">BatchRow</span></code>s function that transforms a <code class="docutils literal notranslate"><span class="pre">List</span></code> of rows, in this case <code class="docutils literal notranslate"><span class="pre">Iou.Contract</span></code>s, into a single <code class="docutils literal notranslate"><span class="pre">JdbcAction</span></code>.
+<code class="docutils literal notranslate"><span class="pre">projectRows</span></code> starts the projection process, converting created <code class="docutils literal notranslate"><span class="pre">Iou.Contract</span></code>s into rows in the <code class="docutils literal notranslate"><span class="pre">ious</span></code> table.</p>
+</div>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h2>
+<p>The Custom Views library uses the <a class="reference external" href="https://github.com/lightbend/config">Lightbend config library</a> for configuration.
+The library is packaged with a <code class="docutils literal notranslate"><span class="pre">reference.conf</span></code> file which specifies default settings. The next sections describe the default confguration settings.
+You can override the configuration by using an <code class="docutils literal notranslate"><span class="pre">application.conf</span></code> file, see <a class="reference external" href="https://github.com/lightbend/config#using-the-library">using the Lightbend config library</a> for more details.</p>
+<div class="section" id="database-migration-with-flyway">
+<h3>Database migration with Flyway<a class="headerlink" href="#database-migration-with-flyway" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://flywaydb.org/documentation/">Flyway</a> is used for database migration. Resources to create and migrate the database objects
+that the library needs internally are provided, for instance for the <cite>projection</cite> table that is used to persist <cite>Projection</cite>s.</p>
+<p>The internal SQL scripts are provided in the jar at <cite>/db/migration/projection</cite>.</p>
+<p>The <cite>reference.conf</cite> file configures this by default, shown below:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projection {
+  # The name of the projection table which keeps track of all projections by projection-id
+  projection-table-name = &quot;projection&quot;
+  # database migration configuration
+  flyway {
+    # location of flyway migration schemas for internal bookkeeping (the projection-table).
+    internal-locations = [&quot;db/migration/projection&quot;]
+    # Override locations to provide your own flyway scripts.
+    locations = []
+    # If set to true, database migration is executed automatically.
+    migrate-on-start = true
+  }
+}
+</pre></div>
+</div>
+<p>The <cite>projection</cite> table is created automatically when a projection process is started with the <code class="docutils literal notranslate"><span class="pre">project</span></code>, <code class="docutils literal notranslate"><span class="pre">projectRows</span></code>, or <code class="docutils literal notranslate"><span class="pre">projectEvents</span></code> method on <code class="docutils literal notranslate"><span class="pre">Projector</span></code>.
+Provide additional flyway locations with the <cite>projection.flyway.locations</cite> configuration parameter and bundle your own resources as explained
+<a class="reference external" href="https://flywaydb.org/documentation/concepts/migrations#discovery">in the Flyway documentation</a>. This makes it possible to create and migrate
+database tables and other database objects required for your projections automatically when a projection is (re-)started.</p>
+<p>If you do not want to use Flyway database migration, set <cite>projection.flyway.migrate-on-start</cite> to false. In that case you have to create the <cite>projection</cite> table yourself as well.</p>
+</div>
+<div class="section" id="batcher-configuration">
+<h3>Batcher configuration<a class="headerlink" href="#batcher-configuration" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">Batch</span></code> consists of 1 to many events, and optionally contains a marker that indicates that a transaction has been committed on the ledger.</p>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">batch-size</span></code> and the <code class="docutils literal notranslate"><span class="pre">batch-interval</span></code> are configured in the reference.conf:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projection {
+  batch-size = 10000
+  batch-interval = 1 second
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="dispatcher-configuration-for-blocking-operation">
+<h3>Dispatcher configuration for blocking operation<a class="headerlink" href="#dispatcher-configuration-for-blocking-operation" title="Permalink to this heading">¶</a></h3>
+<p>A default dedicated dispatcher for blocking operations (e.g. db operation) is configured in reference.conf:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>projection {
+  blocking-io-dispatcher {
+    type = Dispatcher
+    executor = &quot;thread-pool-executor&quot;
+    thread-pool-executor {
+      fixed-pool-size = 16
+    }
+    throughput = 1
+  }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="ledger-api-authorization">
+<h3>Ledger API Authorization<a class="headerlink" href="#ledger-api-authorization" title="Permalink to this heading">¶</a></h3>
+<p>The client must provide an access token when authorization is required by the Ledger.
+For details of ledger authorization, please refer to <a class="reference external" href="https://docs.daml.com/app-dev/authorization.html">Ledger Authorization documentation</a>.</p>
+<div class="section" id="provide-access-token-to-custom-view-library">
+<h4>Provide access token to custom-view library<a class="headerlink" href="#provide-access-token-to-custom-view-library" title="Permalink to this heading">¶</a></h4>
+<p>Applications can provide an access token when setting up the client. The example below shows how to set <cite>LedgerCallCredentials</cite> on the <cite>GrpcClientSettings</cite>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">grpcClientSettings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GrpcClientSettings</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="na">connectToServiceAt</span><span class="p">(</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6865</span><span class="p">,</span><span class="w"> </span><span class="n">system</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">.</span><span class="na">withCallCredentials</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LedgerCallCredentials</span><span class="p">(</span><span class="n">accessToken</span><span class="p">));</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BatchSource</span><span class="p">.</span><span class="na">events</span><span class="p">(</span><span class="n">grpcClientSettings</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">projector</span><span class="p">.</span><span class="na">project</span><span class="p">(</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">events</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="provide-a-newly-retrieved-access-token-when-the-existing-one-has-expired">
+<h4>Provide a newly retrieved access token when the existing one has expired<a class="headerlink" href="#provide-a-newly-retrieved-access-token-when-the-existing-one-has-expired" title="Permalink to this heading">¶</a></h4>
+<p>When an access token is expired, an application can retrieve a new access token with the stored refresh token.
+For details on the refresh token, please refer to <a class="reference external" href="https://docs.daml.com/tools/auth-middleware/index.html#refresh-access-token">Ledger auth-middleware documentation</a>.
+With the new access token, an application can cancel the running projection and re-create a new one using the new token.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">control</span><span class="p">.</span><span class="na">cancel</span><span class="p">().</span><span class="na">thenApply</span><span class="p">(</span><span class="n">done</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="n">sourceWithNewToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BatchSource</span><span class="p">.</span><span class="na">events</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">grpcClientSettings</span><span class="p">.</span><span class="na">withCallCredentials</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LedgerCallCredentials</span><span class="p">(</span><span class="n">newAccessToken</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">projector</span><span class="p">.</span><span class="na">project</span><span class="p">(</span><span class="n">sourceWithNewToken</span><span class="p">,</span><span class="w"> </span><span class="n">events</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">);</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              
+            </div>
+            
+            
+              <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ledger-api.html" class="da-btn da-btn-label btn-prev" title="The Ledger API" accesskey="p" rel="prev">Previous</a>
+      
+      
+        <a href="../authorization.html" class="da-btn da-btn-label btn-next" title="Authorization" accesskey="n" rel="next">Next</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. Any unauthorized use, duplication or distribution is strictly prohibited. &#34;Digital Asset&#34; and &#34;Daml&#34; are Registered in the U.S. Patent and Trademark Office.
+
+    </p>
+  </div> 
+
+</footer>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+  
+    
+  
+  <div id="inpageContent"></div>
+  
+
+</body>
+</html>

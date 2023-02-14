@@ -1,0 +1,1421 @@
+<!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Daml.Trigger.LowLevel &mdash; Daml SDK 0.0.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/clipboard.min.js"></script>
+  <script src="../../_static/copybutton.js"></script>
+  
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Deploy to a Generic Daml Ledger" href="../../deploy/generic_ledger.html" />
+  <link rel="prev" title="Daml.Trigger.Assert" href="Daml-Trigger-Assert.html" /> 
+
+  
+  <link rel="icon" type="image/svg+xml"  href="../../_static/images/daml-logo-mark-light.svg">
+  <link rel="alternate icon" href="../../_static/images/daml-favicon-1.ico">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSWJMNX');</script>
+  <!-- End Google Tag Manager -->
+
+</head>
+
+<body class="wy-body-for-nav">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSWJMNX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-nav-side-shadow"></div>
+      <div class="wy-side-scroll">
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+          
+          
+          
+          
+          
+          <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Daml Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/app-arch.html"> app-dev/app-arch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/index.html"> app-dev/bindings-ts/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html"> app-dev/bindings-ts/daml-react</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html"> app-dev/bindings-ts/daml-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html"> app-dev/bindings-ts/daml-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html"> app-dev/bindings-ts/daml2js</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/parties-users.html"> app-dev/parties-users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/index.html"> app-dev/grpc/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/error-codes.html"> app-dev/grpc/error-codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html"> app-dev/grpc/proto-docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html"> app-dev/grpc/daml-to-ledger-api</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/services.html"> app-dev/services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html"> app-dev/bindings-x-lang/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/daml-lf-translation.html"> app-dev/daml-lf-translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-python.html"> app-dev/bindings-python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/command-deduplication.html"> app-dev/command-deduplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/ledger-api.html"> app-dev/ledger-api</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/custom-views/index.html"> app-dev/custom-views/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/authorization.html"> app-dev/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/index.html"> app-dev/bindings-java/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html"> app-dev/bindings-java/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html"> app-dev/bindings-java/quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../app-dev/bindings-java/example.html"> app-dev/bindings-java/example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/index.html"> json-api/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/lf-value-specification.html"> json-api/lf-value-specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/search-query-language.html"> json-api/search-query-language</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/security-and-privacy.html"> json-api/production-setup/security-and-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/scaling-and-redundancy.html"> json-api/production-setup/scaling-and-redundancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/metrics.html"> json-api/production-setup/metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/query-store.html"> json-api/production-setup/query-store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/logging.html"> json-api/production-setup/logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup/architecture.html"> json-api/production-setup/architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../json-api/production-setup.html"> json-api/production-setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/index.html"> upgrade/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/extend.html"> upgrade/extend</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/upgrade.html"> upgrade/upgrade</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../upgrade/automation.html"> upgrade/automation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/index.html"> tools/auth-middleware/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html"> tools/auth-middleware/oauth2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/canton-console.html"> tools/canton-console</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/index.html"> tools/trigger-service/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html"> tools/trigger-service/auth0_example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/trigger-service/authorization.html"> tools/trigger-service/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/assistant.html"> tools/assistant</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/codegen.html"> tools/codegen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/non-repudiation.html"> tools/non-repudiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/visual.html"> tools/visual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/navigator/index.html"> tools/navigator/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/sandbox.html"> tools/sandbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/profiler.html"> tools/profiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tools/export/index.html"> tools/export/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-off-ledger.html"> daml-off-ledger</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html"> triggers/index</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Daml Trigger Library</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"> triggers/api/index</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"> triggers/api/Daml-Trigger-LowLevel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Daml-Trigger-Assert.html"> triggers/api/Daml-Trigger-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Daml-Trigger.html"> triggers/api/Daml-Trigger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploy/generic_ledger.html"> deploy/generic_ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-repl/index.html"> daml-repl/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/considerations.html"> daml/considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/daml-studio.html"> daml/daml-studio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking.html"> daml/patterns/locking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/initaccept.html"> daml/patterns/initaccept</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/multiparty-agreement.html"> daml/patterns/multiparty-agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html"> daml/patterns/locking/locking-by-safekeeping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html"> daml/patterns/locking/locking-by-state</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html"> daml/patterns/locking/locking-by-archiving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/legends.html"> daml/patterns/legends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/delegation.html"> daml/patterns/delegation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns/authorization.html"> daml/patterns/authorization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/3_Data.html"> daml/intro/3_Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/8_Exceptions.html"> daml/intro/8_Exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/12_Testing.html"> daml/intro/12_Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/5_Restrictions.html"> daml/intro/5_Restrictions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/6_Parties.html"> daml/intro/6_Parties</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/99_NextSteps.html"> daml/intro/99_NextSteps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/2_DamlScript.html"> daml/intro/2_DamlScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/10_Functional101.html"> daml/intro/10_Functional101</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/1_Token.html"> daml/intro/1_Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/0_Intro.html"> daml/intro/0_Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/13_Interfaces.html"> daml/intro/13_Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/4_Transformations.html"> daml/intro/4_Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/7_Composing.html"> daml/intro/7_Composing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/9_Dependencies.html"> daml/intro/9_Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/intro/11_StdLib.html"> daml/intro/11_StdLib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/patterns.html"> daml/patterns</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/initaccept.html">The Initiate and Accept Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/multiparty-agreement.html">The Multiple Party Agreement Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/delegation.html">The Delegation Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/authorization.html">The Authorization Pattern</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/locking.html">The Locking Pattern</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-archiving.html">Lock by Archiving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-state.html">Lock by State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../daml/patterns/locking/locking-by-safekeeping.html">Lock by Safekeeping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/patterns/legends.html">Diagram Legends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Numeric.html"> daml/stdlib/DA-Numeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/index.html"> daml/stdlib/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/Prelude.html">Prelude</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action.html">DA.Action</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action-State.html">DA.Action.State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Action-State-Class.html">DA.Action.State.Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Assert.html">DA.Assert</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Bifunctor.html">DA.Bifunctor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-BigNumeric.html">DA.BigNumeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Date.html">DA.Date</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Either.html">DA.Either</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Exception.html">DA.Exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Foldable.html">DA.Foldable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Functor.html">DA.Functor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView.html">DA.Internal.Interface.AnyView</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView-Types.html">DA.Internal.Interface.AnyView.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List.html">DA.List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List-BuiltinOrder.html">DA.List.BuiltinOrder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-List-Total.html">DA.List.Total</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Logic.html">DA.Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Map.html">DA.Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Math.html">DA.Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Monoid.html">DA.Monoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty.html">DA.NonEmpty</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty-Types.html">DA.NonEmpty.Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Numeric.html">DA.Numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Optional.html">DA.Optional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Record.html">DA.Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Semigroup.html">DA.Semigroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Set.html">DA.Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Stack.html">DA.Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Text.html">DA.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-TextMap.html">DA.TextMap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Time.html">DA.Time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Traversable.html">DA.Traversable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Tuple.html">DA.Tuple</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/DA-Validation.html">DA.Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/GHC-Show-Text.html">GHC.Show.Text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/stdlib/GHC-Tuple-Check.html">GHC.Tuple.Check</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView.html"> daml/stdlib/DA-Internal-Interface-AnyView</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action.html"> daml/stdlib/DA-Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Monoid.html"> daml/stdlib/DA-Monoid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Foldable.html"> daml/stdlib/DA-Foldable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-TextMap.html"> daml/stdlib/DA-TextMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Tuple.html"> daml/stdlib/DA-Tuple</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Record.html"> daml/stdlib/DA-Record</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Internal-Interface-AnyView-Types.html"> daml/stdlib/DA-Internal-Interface-AnyView-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List.html"> daml/stdlib/DA-List</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List-Total.html"> daml/stdlib/DA-List-Total</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Either.html"> daml/stdlib/DA-Either</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Traversable.html"> daml/stdlib/DA-Traversable</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Optional.html"> daml/stdlib/DA-Optional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Map.html"> daml/stdlib/DA-Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty-Types.html"> daml/stdlib/DA-NonEmpty-Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Time.html"> daml/stdlib/DA-Time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Bifunctor.html"> daml/stdlib/DA-Bifunctor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/Prelude.html"> daml/stdlib/Prelude</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Set.html"> daml/stdlib/DA-Set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Semigroup.html"> daml/stdlib/DA-Semigroup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Assert.html"> daml/stdlib/DA-Assert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Functor.html"> daml/stdlib/DA-Functor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Text.html"> daml/stdlib/DA-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Logic.html"> daml/stdlib/DA-Logic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/GHC-Show-Text.html"> daml/stdlib/GHC-Show-Text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Date.html"> daml/stdlib/DA-Date</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action-State-Class.html"> daml/stdlib/DA-Action-State-Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-NonEmpty.html"> daml/stdlib/DA-NonEmpty</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Math.html"> daml/stdlib/DA-Math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-List-BuiltinOrder.html"> daml/stdlib/DA-List-BuiltinOrder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Stack.html"> daml/stdlib/DA-Stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Action-State.html"> daml/stdlib/DA-Action-State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Validation.html"> daml/stdlib/DA-Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-BigNumeric.html"> daml/stdlib/DA-BigNumeric</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/GHC-Tuple-Check.html"> daml/stdlib/GHC-Tuple-Check</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/stdlib/DA-Exception.html"> daml/stdlib/DA-Exception</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/troubleshooting.html"> daml/troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/latency-and-throughput.html"> daml/resource-management/latency-and-throughput</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/index.html"> daml/resource-management/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/resource-management/active-contract-set.html"> daml/resource-management/active-contract-set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/templates.html"> daml/reference/templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/index.html"> daml/reference/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/structure.html">Overview: Template Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/templates.html">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/choices.html">Choices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/updates.html">Updates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/data-types.html">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/working-with.html">Built-in functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/expressions.html">Expressions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/file-structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/packages.html">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/contract-keys.html">Contract keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/exceptions.html">Exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml/reference/interfaces.html">Interfaces</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/working-with.html"> daml/reference/working-with</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/functions.html"> daml/reference/functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/data-types.html"> daml/reference/data-types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/choices.html"> daml/reference/choices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/packages.html"> daml/reference/packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/expressions.html"> daml/reference/expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/structure.html"> daml/reference/structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/contract-keys.html"> daml/reference/contract-keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/file-structure.html"> daml/reference/file-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/updates.html"> daml/reference/updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/exceptions.html"> daml/reference/exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml/reference/interfaces.html"> daml/reference/interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html"> getting-started/index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/testing.html"> getting-started/testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/path-variables.html"> getting-started/path-variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/manual-download.html"> getting-started/manual-download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/app-architecture.html"> getting-started/app-architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/first-feature.html"> getting-started/first-feature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/installation.html"> getting-started/installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/support.html"> support/support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/status-definitions.html"> support/status-definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/overview.html"> support/overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../support/status-definitions.html">Status Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../support/component-statuses.html">Feature and Component Statuses</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/releases.html"> support/releases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/compatibility.html"> support/compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/component-statuses.html"> support/component-statuses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/time.html"> concepts/time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/index.html"> concepts/ledger-model/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html">Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html">Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html">Privacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html">Daml: Define Contract Models Compactly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-privacy.html"> concepts/ledger-model/ledger-privacy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-structure.html"> concepts/ledger-model/ledger-structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-integrity.html"> concepts/ledger-model/ledger-integrity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-daml.html"> concepts/ledger-model/ledger-daml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/ledger-model/ledger-exceptions.html"> concepts/ledger-model/ledger-exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/interoperability.html"> concepts/interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/test-evidence.html"> concepts/test-evidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/identity-and-package-management.html"> concepts/identity-and-package-management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/glossary.html"> concepts/glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../concepts/local-ledger.html"> concepts/local-ledger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/system_architecture_faq.html"> ops/system_architecture_faq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/requirements.html"> ops/requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/pruning.html"> ops/pruning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/common-metrics.html"> ops/common-metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/metering.html"> ops/metering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/index.html"> daml-script/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/index.html"> daml-script/api/index</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../daml-script/api/Daml-Script.html"> daml-script/api/Daml-Script</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../building-applications.html"> building-applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/app-arch.html">Daml Application Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-ts/index.html">Using JavaScript Client Libraries with Daml</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml2js.html">Use the JavaScript Code Generator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-react.html">&#64;daml/react</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-ledger.html">&#64;daml/ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-ts/daml-types.html">&#64;daml/types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../json-api/index.html">HTTP JSON API Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-java/index.html">Java Bindings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/codegen.html">Generate Java Code from Daml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/example.html">Ping Pong Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-java/quickstart.html">Iou Quickstart Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/bindings-python.html">Python Bindings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-script/index.html">Daml Script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../daml-script/api/index.html">Daml Script Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../daml-script/api/Daml-Script.html">Daml.Script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../daml-repl/index.html">Daml REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../upgrade/index.html">Upgrading and Extending Daml Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/extend.html">Extending Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/upgrade.html">Upgrading Daml Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../upgrade/automation.html">Automating the Upgrade Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/authorization.html">Authorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/ledger-api.html">The Ledger API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/services.html">The Ledger API Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/parties-users.html">Parties and Users On a Daml Ledger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/index.html">Use the Ledger API With gRPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/error-codes.html">Error Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/proto-docs.html">Ledger API Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/grpc/daml-to-ledger-api.html">How Daml Types are Translated to Protobuf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/daml-lf-translation.html">How Daml Types are Translated to Daml-LF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../app-dev/bindings-x-lang/index.html">Create Your Own Bindings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../app-dev/command-deduplication.html">Command Deduplication</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Daml Triggers - Off-Ledger Automation in Daml</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Daml Trigger Library</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="Daml-Trigger.html">Daml.Trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Daml-Trigger-Assert.html">Daml.Trigger.Assert</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Daml.Trigger.LowLevel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/trigger-service/index.html">Trigger Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/authorization.html">Authorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/trigger-service/auth0_example.html">Auth0 Example Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tools/auth-middleware/index.html">Auth Middleware</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tools/auth-middleware/oauth2.html">OAuth 2.0 Auth Middleware</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../high-level-intro.html"> high-level-intro</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html">Dummy Canton Refs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../canton-refs.html#dummy-toc-refs">Dummy TOC Refs</a></li>
+</ul>
+
+          
+          
+          
+          <div class="pdf-download"><a href="../../_downloads/DigitalAssetSDK.pdf" download>Download as PDF</a></div>
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <div class="topbar fixed">
+        
+        <nav class="wy-nav-top" aria-label="top navigation">
+          
+          <i data-toggle="wy-nav-top" class="wy-nav-top-toggle"></i>
+          
+        </nav>
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="navbar">
+    <h1><img src="../../_static/images/Daml_Logo_Blue.svg"></h1>
+    <div class="navbar-menu">
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/developers" role="menuitem" class="da-menu-link">Developers</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com/products" role="menuitem" class="da-menu-link">Products</a>
+        </div>
+        <div class="da-menu-item da-menu-depth-1" role="menu">
+            <a href="https://www.digitalasset.com" role="menuitem" class="da-menu-link">Company</a>
+        </div>
+    </div>
+</div>
+
+        <div class="version ">
+          <span class="hide-mobile">Version&nbsp;</span><span class="version_switcher_placeholder"></span>
+          
+        </div>
+
+
+        <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<div class="search-inline">
+    <div id="rtd-search-inline-form" class="wy-form">
+        <input type="text" class="search-inline-input" placeholder="Search" name="q">
+        <img src="../../_static/images/Search.svg" class="search-inline-img"/>
+    </div>
+    <div class="search-alert">
+        Please enter at least 3 letters.
+    </div>
+    <div id="search-inline-results" class="search-inline-results">
+        
+    </div>
+</div>
+          <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<div class="content-menu collapsed">
+    <span class="content-menu-title">In This Section</span>
+    <span class="content-menu-expand"></span>
+    <div class="content-menu-wrapper">
+        
+        <!-- Local TOC -->
+        <div class="content-menu-toc"><ul>
+<li><a class="reference internal" href="#">Daml.Trigger.LowLevel</a><ul>
+<li><a class="reference internal" href="#typeclasses">Typeclasses</a></li>
+<li><a class="reference internal" href="#data-types">Data Types</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        
+    </div>
+</div>
+        
+
+      </div>
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div itemprop="articleBody">
+                
+  <div class="section" id="daml-trigger-lowlevel">
+<span id="module-daml-trigger-lowlevel-64058"></span><h1>Daml.Trigger.LowLevel<a class="headerlink" href="#daml-trigger-lowlevel" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="typeclasses">
+<h2>Typeclasses<a class="headerlink" href="#typeclasses" title="Permalink to this heading">¶</a></h2>
+<p id="class-daml-trigger-lowlevel-actiontrigger-4488"><strong>class</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-lf-hastime-96546">HasTime</a> m =&gt; <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> m <strong>where</strong></p>
+<blockquote>
+<div><p>Low-level trigger actions.</p>
+<dl class="docutils" id="function-daml-trigger-lowlevel-lifttf-75467">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-lifttf-75467">liftTF</a></dt><dd>: TriggerF a -&gt; m a</dd>
+</dl>
+<p><strong>instance</strong> <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="data-types">
+<h2>Data Types<a class="headerlink" href="#data-types" title="Permalink to this heading">¶</a></h2>
+<p id="type-daml-trigger-lowlevel-activecontracts-6750"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-activecontracts-64149"><a class="reference internal" href="#constr-daml-trigger-lowlevel-activecontracts-64149">ActiveContracts</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>activeContracts</td>
+<td>[<a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a>]</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;acs&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;activeContracts&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a>]</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a> -&gt; [<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-anycontractid-26036"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<blockquote>
+<div><p>This type represents the contract id of an unknown template.
+You can use <code class="docutils literal notranslate"><span class="pre">fromAnyContractId</span></code> to check which template it corresponds to.</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-eq-22713">Eq</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-ord-6395">Ord</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;activeContracts&quot; ACS (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-templatetyperep-33792">TemplateTypeRep</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a>))</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> ())</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;pendingContracts&quot; ACS (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;pendingContracts&quot; (TriggerAState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;templateId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-templatetyperep-33792">TemplateTypeRep</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-archived-67782"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a></p>
+<blockquote>
+<div><p>The data in an <code class="docutils literal notranslate"><span class="pre">Archived</span></code> event.</p>
+<p id="constr-daml-trigger-lowlevel-archived-34319"><a class="reference internal" href="#constr-daml-trigger-lowlevel-archived-34319">Archived</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>eventId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>contractId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-eq-22713">Eq</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;eventId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-batchtrigger-33124"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s</p>
+<blockquote>
+<div><p>Batching trigger is (approximately) a left-fold over <code class="docutils literal notranslate"><span class="pre">Message</span></code> with
+an accumulator of type <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
+<p id="constr-daml-trigger-lowlevel-batchtrigger-31933"><a class="reference internal" href="#constr-daml-trigger-lowlevel-batchtrigger-31933">BatchTrigger</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>initialState</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>update</td>
+<td>[<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ()</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>registeredTemplates</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>heartbeat</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Time.html#type-da-time-types-reltime-23082">RelTime</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;heartbeat&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Time.html#type-da-time-types-reltime-23082">RelTime</a>)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;registeredTemplates&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) ([<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-command-96878"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a></p>
+<blockquote>
+<div><p>A ledger API command. To construct a command use <code class="docutils literal notranslate"><span class="pre">createCmd</span></code> and <code class="docutils literal notranslate"><span class="pre">exerciseCmd</span></code>.</p>
+<p id="constr-daml-trigger-lowlevel-createcommand-47079"><a class="reference internal" href="#constr-daml-trigger-lowlevel-createcommand-47079">CreateCommand</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>templateArg</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p id="constr-daml-trigger-lowlevel-exercisecommand-74023"><a class="reference internal" href="#constr-daml-trigger-lowlevel-exercisecommand-74023">ExerciseCommand</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>contractId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>choiceArg</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anychoice-86490">AnyChoice</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p id="constr-daml-trigger-lowlevel-createandexercisecommand-92581"><a class="reference internal" href="#constr-daml-trigger-lowlevel-createandexercisecommand-92581">CreateAndExerciseCommand</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>templateArg</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>choiceArg</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anychoice-86490">AnyChoice</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p id="constr-daml-trigger-lowlevel-exercisebykeycommand-48604"><a class="reference internal" href="#constr-daml-trigger-lowlevel-exercisebykeycommand-48604">ExerciseByKeyCommand</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>tplTypeRep</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-templatetyperep-33792">TemplateTypeRep</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>contractKey</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anycontractkey-68193">AnyContractKey</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>choiceArg</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anychoice-86490">AnyChoice</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;choiceArg&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anychoice-86490">AnyChoice</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commands&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>]</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; (TriggerAState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; (TriggerState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; TriggerUpdateState (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractKey&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anycontractkey-68193">AnyContractKey</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;templateArg&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;tplTypeRep&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-templatetyperep-33792">TemplateTypeRep</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-commandid-51507"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-commandid-24540"><a class="reference internal" href="#constr-daml-trigger-lowlevel-commandid-24540">CommandId</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-text-51952">Text</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-eq-22713">Eq</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-ord-6395">Ord</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a>)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; (TriggerAState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; (TriggerState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandsInFlight&quot; TriggerUpdateState (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;pendingContracts&quot; ACS (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a>])</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;pendingContracts&quot; (TriggerAState s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-map-90052">Map</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a>])</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-commands-84262"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a></p>
+<blockquote>
+<div><p>A set of commands that are submitted as a single transaction.</p>
+<p id="constr-daml-trigger-lowlevel-commands-60307"><a class="reference internal" href="#constr-daml-trigger-lowlevel-commands-60307">Commands</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>commandId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>commands</td>
+<td>[<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>]</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commands&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>]</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-completion-8224"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a></p>
+<blockquote>
+<div><p>A completion message.
+Note that you will only get completions for commands emitted from the trigger.
+Contrary to the ledger API completion stream, this also includes
+synchronous failures.</p>
+<p id="constr-daml-trigger-lowlevel-completion-76245"><a class="reference internal" href="#constr-daml-trigger-lowlevel-completion-76245">Completion</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>commandId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>status</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;status&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-completionstatus-55948"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-failed-41528"><a class="reference internal" href="#constr-daml-trigger-lowlevel-failed-41528">Failed</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>status</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>message</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-text-51952">Text</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p id="constr-daml-trigger-lowlevel-succeeded-44003"><a class="reference internal" href="#constr-daml-trigger-lowlevel-succeeded-44003">Succeeded</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>transactionId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;message&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-text-51952">Text</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;status&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;status&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;transactionId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-created-33521"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a></p>
+<blockquote>
+<div><p>The data in a <code class="docutils literal notranslate"><span class="pre">Created</span></code> event.</p>
+<p id="constr-daml-trigger-lowlevel-created-24390"><a class="reference internal" href="#constr-daml-trigger-lowlevel-created-24390">Created</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>eventId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>contractId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>argument</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>views</td>
+<td>[InterfaceView]</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;activeContracts&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a>]</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;argument&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-any-anytemplate-63703">AnyTemplate</a>)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;contractId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;eventId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;views&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> [InterfaceView]</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-event-20139"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-event-20139">Event</a></p>
+<blockquote>
+<div><p>An event in a transaction.
+This definition should be kept consistent with the object <code class="docutils literal notranslate"><span class="pre">EventVariant</span></code> defined in
+triggers/runner/src/main/scala/com/digitalasset/daml/lf/engine/trigger/Converter.scala</p>
+<p id="constr-daml-trigger-lowlevel-createdevent-33321"><a class="reference internal" href="#constr-daml-trigger-lowlevel-createdevent-33321">CreatedEvent</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a></p>
+<p id="constr-daml-trigger-lowlevel-archivedevent-50254"><a class="reference internal" href="#constr-daml-trigger-lowlevel-archivedevent-50254">ArchivedEvent</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;events&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-event-20139">Event</a>]</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-eventid-75698"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-eventid-55625"><a class="reference internal" href="#constr-daml-trigger-lowlevel-eventid-55625">EventId</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-text-51952">Text</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-eq-22713">Eq</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;eventId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;eventId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-message-7580"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a></p>
+<blockquote>
+<div><p>Either a transaction or a completion.
+This definition should be kept consistent with the object <code class="docutils literal notranslate"><span class="pre">MessageVariant</span></code> defined in
+triggers/runner/src/main/scala/com/digitalasset/daml/lf/engine/trigger/Converter.scala</p>
+<p id="constr-daml-trigger-lowlevel-mtransaction-71358"><a class="reference internal" href="#constr-daml-trigger-lowlevel-mtransaction-71358">MTransaction</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a></p>
+<p id="constr-daml-trigger-lowlevel-mcompletion-42369"><a class="reference internal" href="#constr-daml-trigger-lowlevel-mcompletion-42369">MCompletion</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-completion-8224">Completion</a></p>
+<p id="constr-daml-trigger-lowlevel-mheartbeat-78836"><a class="reference internal" href="#constr-daml-trigger-lowlevel-mheartbeat-78836">MHeartbeat</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) ([<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;updateState&quot; (<a class="reference internal" href="Daml-Trigger.html#type-daml-trigger-trigger-91122"><span class="std std-ref">Trigger</span></a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a> -&gt; <a class="reference internal" href="Daml-Trigger.html#type-daml-trigger-internal-triggerupdatea-82551"><span class="std std-ref">TriggerUpdateA</span></a> s ())</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-registeredtemplates-41468"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-allindar-59816"><a class="reference internal" href="#constr-daml-trigger-lowlevel-allindar-59816">AllInDar</a></p>
+<blockquote>
+<div>Listen to events for all templates in the given DAR.</div></blockquote>
+<p id="constr-daml-trigger-lowlevel-registeredtemplates-54723"><a class="reference internal" href="#constr-daml-trigger-lowlevel-registeredtemplates-54723">RegisteredTemplates</a> [RegisteredTemplate]</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;registeredTemplates&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;registeredTemplates&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;registeredTemplates&quot; (<a class="reference internal" href="Daml-Trigger.html#type-daml-trigger-trigger-91122"><span class="std std-ref">Trigger</span></a> s) <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-transaction-35381"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-transaction-96842"><a class="reference internal" href="#constr-daml-trigger-lowlevel-transaction-96842">Transaction</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>transactionId</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>commandId</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>events</td>
+<td>[<a class="reference internal" href="#type-daml-trigger-lowlevel-event-20139">Event</a>]</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;commandId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a>)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;events&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> [<a class="reference internal" href="#type-daml-trigger-lowlevel-event-20139">Event</a>]</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;transactionId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-transactionid-96020"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-transactionid-86775"><a class="reference internal" href="#constr-daml-trigger-lowlevel-transactionid-86775">TransactionId</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-text-51952">Text</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-classes-eq-22713">Eq</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-show-show-65360">Show</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;transactionId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-completionstatus-55948">CompletionStatus</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;transactionId&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-transaction-35381">Transaction</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-transactionid-96020">TransactionId</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-trigger-87117"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s</p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-trigger-67054"><a class="reference internal" href="#constr-daml-trigger-lowlevel-trigger-67054">Trigger</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>initialState</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a> -&gt; [<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>update</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ()</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>registeredTemplates</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>heartbeat</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Time.html#type-da-time-types-reltime-23082">RelTime</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;heartbeat&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Time.html#type-da-time-types-reltime-23082">RelTime</a>)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a> -&gt; [<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;registeredTemplates&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) <a class="reference internal" href="#type-daml-trigger-lowlevel-registeredtemplates-41468">RegisteredTemplates</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-triggerconfig-22465"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-triggerconfig-69158"><a class="reference internal" href="#constr-daml-trigger-lowlevel-triggerconfig-69158">TriggerConfig</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>maxInFlightCommands</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></td>
+<td>maximum number of commands that should be allowed to be in-flight at any point in time. Exceeding this value will eventually lead to the trigger run raising an InFlightCommandOverflowException exception.</td>
+</tr>
+<tr class="row-odd"><td>maxActiveContracts</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></td>
+<td>maximum number of active contracts that we will allow to be stored Exceeding this value will lead to the trigger runner raising an ACSOverflowException exception.</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;config&quot; (TriggerAState s) <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;config&quot; (TriggerState s) <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;config&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;maxActiveContracts&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;maxInFlightCommands&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-ghc-types-int-37261">Int</a></p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-triggerrule-55319"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s a</p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-triggerrule-70640"><a class="reference internal" href="#constr-daml-trigger-lowlevel-triggerrule-70640">TriggerRule</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>runTriggerRule</td>
+<td>StateT s (Free TriggerF) a</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-base-functor-31205">Functor</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Action-State-Class.html#class-da-action-state-class-actionstate-80467">ActionState</a> s (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-lf-hastime-96546">HasTime</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-prelude-action-68790">Action</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-prelude-applicative-9257">Applicative</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;runTriggerA&quot; (<a class="reference internal" href="Daml-Trigger.html#type-daml-trigger-internal-triggera-21640"><span class="std std-ref">TriggerA</span></a> s a) (ACS -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> (TriggerAState s) a)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;runTriggerRule&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s a) (StateT s (Free TriggerF) a)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) ([<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;update&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-message-7580">Message</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s ())</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-triggersetup-21291"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> a</p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-triggersetup-32438"><a class="reference internal" href="#constr-daml-trigger-lowlevel-triggersetup-32438">TriggerSetup</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>runTriggerSetup</td>
+<td>Free TriggerF a</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-base-functor-31205">Functor</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-lf-hastime-96546">HasTime</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-prelude-action-68790">Action</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-da-internal-prelude-applicative-9257">Applicative</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-trigger-87117">Trigger</a> s) (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a> -&gt; [<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>] -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;runTriggerSetup&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> a) (Free TriggerF a)</p>
+</div></blockquote>
+<p id="type-daml-trigger-lowlevel-triggersetuparguments-43774"><strong>data</strong> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a></p>
+<blockquote>
+<div><p id="constr-daml-trigger-lowlevel-triggersetuparguments-31601"><a class="reference internal" href="#constr-daml-trigger-lowlevel-triggersetuparguments-31601">TriggerSetupArguments</a></p>
+<blockquote>
+<div><table border="1" class="docutils align-default">
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>actAs</td>
+<td><a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>readAs</td>
+<td>[<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>]</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>acs</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>config</td>
+<td><a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;acs&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-activecontracts-6750">ActiveContracts</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;actAs&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;config&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerconfig-22465">TriggerConfig</a></p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;initialState&quot; (<a class="reference internal" href="#type-daml-trigger-lowlevel-batchtrigger-33124">BatchTrigger</a> s) (<a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetup-21291">TriggerSetup</a> s)</p>
+<p><strong>instance</strong> <a class="reference external" href="https://docs.daml.com/daml/stdlib/DA-Record.html#class-da-internal-record-hasfield-52839">HasField</a> &quot;readAs&quot; <a class="reference internal" href="#type-daml-trigger-lowlevel-triggersetuparguments-43774">TriggerSetupArguments</a> [<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-party-57932">Party</a>]</p>
+</div></blockquote>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h2>
+<dl class="docutils" id="function-daml-trigger-lowlevel-toanycontractid-76263">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-toanycontractid-76263">toAnyContractId</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a></p>
+<p>Wrap a <code class="docutils literal notranslate"><span class="pre">ContractId</span> <span class="pre">t</span></code> in <code class="docutils literal notranslate"><span class="pre">AnyContractId</span></code>.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromanycontractid-26940">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromanycontractid-26940">fromAnyContractId</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-anycontractid-26036">AnyContractId</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t)</p>
+<p>Check if a <code class="docutils literal notranslate"><span class="pre">AnyContractId</span></code> corresponds to the given template or return
+<code class="docutils literal notranslate"><span class="pre">None</span></code> otherwise.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromcreated-89793">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromcreated-89793">fromCreated</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-created-33521">Created</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a>, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t, t)</p>
+<p>Check if a <code class="docutils literal notranslate"><span class="pre">Created</span></code> event corresponds to the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromarchived-75110">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromarchived-75110">fromArchived</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-archived-67782">Archived</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (<a class="reference internal" href="#type-daml-trigger-lowlevel-eventid-75698">EventId</a>, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t)</p>
+<p>Check if an <code class="docutils literal notranslate"><span class="pre">Archived</span></code> event corresponds to the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-registeredtemplate-19464">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-registeredtemplate-19464">registeredTemplate</a></dt><dd>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; RegisteredTemplate</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-createcmd-30183">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-createcmd-30183">createCmd</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; t -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a></p>
+<p>Create a contract of the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-exercisecmd-11267">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-exercisecmd-11267">exerciseCmd</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r =&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t -&gt; c -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a></p>
+<p>Exercise the given choice.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-createandexercisecmd-68943">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-createandexercisecmd-68943">createAndExerciseCmd</a></dt><dd><p>: (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r) =&gt; t -&gt; c -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a></p>
+<p>Create a contract of the given template and immediately exercise
+the given choice on it.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-exercisebykeycmd-9886">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-exercisebykeycmd-9886">exerciseByKeyCmd</a></dt><dd>: (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-templatekey-95200">TemplateKey</a> t k) =&gt; k -&gt; c -&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a></dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromcreate-82874">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromcreate-82874">fromCreate</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> t</p>
+<p>Check if the command corresponds to a create command
+for the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromcreateandexercise-72826">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromcreateandexercise-72826">fromCreateAndExercise</a></dt><dd><p>: (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-template-31804">Template</a> t, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r) =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (t, c)</p>
+<p>Check if the command corresponds to a create and exercise command
+for the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromexercise-93498">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromexercise-93498">fromExercise</a></dt><dd><p>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-contractid-95282">ContractId</a> t, c)</p>
+<p>Check if the command corresponds to an exercise command
+for the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-fromexercisebykey-26585">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-fromexercisebykey-26585">fromExerciseByKey</a></dt><dd><p>: (<a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-choice-82157">Choice</a> t c r, <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-template-functions-templatekey-95200">TemplateKey</a> t k) =&gt; <a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a> -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-prelude-optional-37153">Optional</a> (k, c)</p>
+<p>Check if the command corresponds to an exercise by key command
+for the given template.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-execstatet-77408">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-execstatet-77408">execStateT</a></dt><dd>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-base-functor-31205">Functor</a> m =&gt; StateT s m a -&gt; s -&gt; m s</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-zoom-69133">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-zoom-69133">zoom</a></dt><dd>: <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#class-ghc-base-functor-31205">Functor</a> m =&gt; (t -&gt; s) -&gt; (t -&gt; s -&gt; t) -&gt; StateT s m a -&gt; StateT t m a</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-simulaterule-22272">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-simulaterule-22272">simulateRule</a></dt><dd><p>: <a class="reference internal" href="#type-daml-trigger-lowlevel-triggerrule-55319">TriggerRule</a> s a -&gt; <a class="reference external" href="https://docs.daml.com/daml/stdlib/Prelude.html#type-da-internal-lf-time-63886">Time</a> -&gt; s -&gt; (s, [<a class="reference internal" href="#type-daml-trigger-lowlevel-commands-84262">Commands</a>], a)</p>
+<p>Run a rule without running it. May lose information from the rule;
+meant for testing purposes only.</p>
+</dd>
+</dl>
+<dl class="docutils" id="function-daml-trigger-lowlevel-submitcommands-74008">
+<dt><a class="reference internal" href="#function-daml-trigger-lowlevel-submitcommands-74008">submitCommands</a></dt><dd>: <a class="reference internal" href="#class-daml-trigger-lowlevel-actiontrigger-4488">ActionTrigger</a> m =&gt; [<a class="reference internal" href="#type-daml-trigger-lowlevel-command-96878">Command</a>] -&gt; m <a class="reference internal" href="#type-daml-trigger-lowlevel-commandid-51507">CommandId</a></dd>
+</dl>
+</div>
+</div>
+
+
+              
+            </div>
+            
+            
+              <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Daml-Trigger-Assert.html" class="da-btn da-btn-label btn-prev" title="Daml.Trigger.Assert" accesskey="p" rel="prev">Previous</a>
+      
+      
+        <a href="../../deploy/generic_ledger.html" class="da-btn da-btn-label btn-next" title="Deploy to a Generic Daml Ledger" accesskey="n" rel="next">Next</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        Copyright (c) 2022 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. Any unauthorized use, duplication or distribution is strictly prohibited. &#34;Digital Asset&#34; and &#34;Daml&#34; are Registered in the U.S. Patent and Trademark Office.
+
+    </p>
+  </div> 
+
+</footer>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Copyright (c) 2023 Digital Asset (Switzerland) GmbH and/or its affiliates. All rights reserved. -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+
+  
+    
+  
+  <div id="inpageContent"></div>
+  
+
+</body>
+</html>
